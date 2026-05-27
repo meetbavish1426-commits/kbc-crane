@@ -356,7 +356,7 @@ body {
 /* service image effect */
 .service-hero-img {
   opacity: 1;
-  transform: scale(1.08);
+  transform: scale(1.04);
   transition: transform 1.2s ease;
 }
 
@@ -366,7 +366,7 @@ body {
 
 .service-pop {
   opacity: 0;
-  transform: scale(0.82) translateY(25px);
+  transform: scale(0.85) translateY(25px);
   transition: all 0.65s ease;
 }
 
@@ -377,18 +377,18 @@ body {
 
 .service-slide-right {
   opacity: 0;
-  transform: translateX(70px) scale(0.96);
+  transform: translateX(60px);
   transition: all 0.9s ease;
 }
 
 .service-slide-left {
   opacity: 0;
-  transform: translateX(-70px) scale(0.96);
+  transform: translateX(-60px);
   transition: all 0.9s ease 0.2s;
 }
 
 .service-slide-right.service-show,
 .service-slide-left.service-show {
   opacity: 1;
-  transform: translateX(0) scale(1);
+  transform: translateX(0);
 }

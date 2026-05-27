@@ -245,10 +245,10 @@ useEffect(() => {
           <div className="relative max-w-225 mx-auto">
             <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-[#ffd7d2] -translate-x-1/2" />
             {[
-              { year: "2004", title: "Foundation", text: "KBC Sales & Service founded with a small team focused on crane spares.", side: "left" },
-              { year: "2012", title: "Expansion", text: "Opened our flagship maintenance workshop with heavy hydraulic testing rigs.", side: "right" },
-              { year: "2018", title: "ISO Certification", text: "Achieved ISO 9001:2015 certification for quality management standards.", side: "left" },
-              { year: "2024", title: "Modern Era", text: "Implementing AI-driven predictive maintenance for fleet management.", side: "right" },
+              { year: "2016", title: "CRANE INDUSTRY EXPERIENCE", text:  "Started working in the crane manufacturing line, gaining practical knowledge in crane systems, service, and industrial material handling.", side: "left" },
+              { year: "2021", title: "FOUNDATION", text:  "KBC Sales & Service was founded with a vision to provide reliable crane sales, service, and maintenance solutions.", side: "right" },
+              { year: "2023", title: "GST Certification", text: "Achieved GST registration, strengthening business credibility and professional operations.", side: "left" },
+              { year: "2025", title: "PRODUCTION PLANT", text: "Established a dedicated production plant to support crane manufacturing, service expansion, and customized industrial solutions.", side: "right" },
             ].map((item) => (
               <div key={item.year} className="relative grid grid-cols-2 min-h-30">
                 <div className={item.side === "left" ? "text-right pr-22" : ""}>{item.side === "left" && <TimelineContent {...item} />}</div>
