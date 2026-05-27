@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Link from "next/link";
 import {
@@ -15,6 +15,7 @@ import {
   FaLightbulb,
 } from "react-icons/fa";
 import { useEffect, useState } from "react";
+ 
 
 export default function Home() {
 const cranes = [
@@ -75,6 +76,45 @@ const cranes = [
 
     return () => clearInterval(interval);
   }, [images.length]);
+
+const sliderItems = [...cranes, cranes[0]];
+const [current, setCurrent] = useState(0);
+const [transition, setTransition] = useState(true);
+
+useEffect(() => {
+  const timer = setInterval(() => {
+    setCurrent((prev) => prev + 1);
+    setTransition(true);
+  }, 4000);
+
+  return () => clearInterval(timer);
+}, []);
+
+const handleTransitionEnd = () => {
+  if (current === cranes.length) {
+    setTransition(false);
+    setCurrent(0);
+  }
+};
+
+useEffect(() => {
+  const cards = document.querySelectorAll(".reveal-card");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  cards.forEach((card) => observer.observe(card));
+
+  return () => observer.disconnect();
+}, []);
 
   return (
 <main className="bg-white text-[#111]">
@@ -208,21 +248,63 @@ const cranes = [
 
 {/* CRANE RANGE */}
 <section className="pt-10 pb-8 md:pt-12 md:pb-10 bg-white overflow-hidden">
-  <div className="max-w-295 mx-auto px-4 sm:px-6 overflow-hidden">
+  <div className="max-w-[1180px] mx-auto px-4 sm:px-6 overflow-hidden">
     <h2 className="text-center text-2xl md:text-3xl font-bold mb-8 md:mb-10">
       Our Specialized Crane Range
     </h2>
 
-    <div className="flex gap-5 sm:gap-6 animate-crane-scroll hover:[animation-play-state:paused]">
+{/* MOBILE SLIDER */}
+<div className="sm:hidden overflow-hidden">
+  <div
+    onTransitionEnd={handleTransitionEnd}
+    className={`flex ${
+      transition ? "transition-transform duration-700 ease-in-out" : ""
+    }`}
+    style={{ transform: `translateX(-${current * 100}%)` }}
+  >
+    {sliderItems.map((crane, index) => (
+      <div key={index} className="w-full shrink-0 px-1">
+        <div className="min-h-[446px] bg-white shadow-md border border-gray-100 text-center flex flex-col">
+          <img
+            src={crane.image}
+            alt={crane.title}
+            className="w-full h-[190px] object-cover"
+          />
+
+          <div className="p-5 flex flex-col flex-1">
+            <h3 className="font-bold text-[17px] mb-4">
+              {crane.title}
+            </h3>
+
+            <p className="text-[13px] text-gray-600 leading-6 mb-6">
+              {crane.desc}
+            </p>
+
+            <div className="mt-auto">
+              <Link
+                href="/product"
+                className="inline-block bg-[#f28c00] text-white text-xs font-bold px-6 py-3 hover:bg-[#e51b23] transition duration-300"
+              >
+                VIEW MORE
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+    {/* DESKTOP / TABLET MARQUEE */}
+    <div className="hidden sm:flex gap-5 sm:gap-6 animate-crane-scroll hover:[animation-play-state:paused]">
       {[...cranes, ...cranes].map((crane, index) => (
         <div
           key={`${crane.title}-${index}`}
-          className="w-67.5 sm:w-75 min-h-111.5 bg-white shadow-md border border-gray-100 text-center shrink-0 flex flex-col hover:shadow-xl transition duration-300"
+          className="w-[270px] sm:w-[300px] min-h-[446px] bg-white shadow-md border border-gray-100 text-center shrink-0 flex flex-col hover:shadow-xl transition duration-300"
         >
           <img
             src={crane.image}
             alt={crane.title}
-            className="w-full h-42.5 sm:h-46.25 object-cover"
+            className="w-full h-[170px] sm:h-[185px] object-cover"
           />
 
           <div className="p-5 sm:p-6 flex flex-col flex-1">
@@ -248,6 +330,7 @@ const cranes = [
     </div>
   </div>
 </section>
+ 
 
       {/* CTA */}
       <section className="relative bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/assets/parallax.webp')" }}>
@@ -279,26 +362,76 @@ const cranes = [
             </div>
           </section>
 
-          <section className="py-20 bg-white/95">
-            <div className="max-w-295 mx-auto px-6">
-              <h2 className="text-center text-[#e51b23] text-xl font-bold mb-12">
-                Innovative Crane Solutions Across Industries
-              </h2>
+ 
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                {industries.map((item) => (
-                  <div
-                    key={item.title}
-                    className="bg-white border border-gray-200 p-8 text-center hover:shadow-lg transition"
-                  >
-                    <div className="text-[#e51b23] text-2xl flex justify-center mb-4">{item.icon}</div>
-                    <h3 className="font-bold text-sm mb-3">{item.title}</h3>
-                    <p className="text-xs text-gray-500 leading-5">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
+<section className="py-12 md:py-20 bg-white/95 overflow-hidden">
+  <div className="max-w-[1180px] mx-auto px-4 sm:px-6">
+    <h2 className="text-center text-[#e51b23] text-lg sm:text-xl font-bold mb-8 md:mb-12">
+      Innovative Crane Solutions Across Industries
+    </h2>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+      {industries.map((item, index) => (
+        <div
+          key={item.title}
+          className="
+            reveal-card
+            group
+            bg-white
+            border
+            border-gray-200
+            rounded-xl
+            p-4
+            sm:p-6
+            flex
+            items-start
+            gap-4
+            sm:block
+            sm:text-center
+            shadow-sm
+            hover:border-[#e51b23]
+            hover:-translate-y-2
+            hover:shadow-2xl
+            transition-all
+            duration-500
+          "
+        >
+          <div
+            className="
+              w-12 h-12
+              shrink-0
+              rounded-full
+              bg-[#e51b23]/10
+              text-[#e51b23]
+              text-xl
+              flex
+              items-center
+              justify-center
+              group-hover:bg-[#e51b23]
+              group-hover:text-white
+              group-hover:rotate-12
+              group-hover:scale-110
+              transition-all
+              duration-500
+            "
+          >
+            {item.icon}
+          </div>
+
+          <div>
+            <h3 className="font-bold text-[15px] sm:text-sm leading-6 mb-1 sm:mb-3 text-[#111]">
+              {item.title}
+            </h3>
+
+            <p className="text-[12px] sm:text-xs text-gray-500 leading-5">
+              {item.desc}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
           <section className="py-28">
             <div className="max-w-190 mx-auto bg-white text-center px-10 py-12 border-b-8 border-[#e51b23] shadow-2xl">

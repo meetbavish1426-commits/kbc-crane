@@ -6,7 +6,7 @@ export const products = [
     title: "EOT CRANE",
     shortDesc:
       "Single girder EOT crane is an advanced manufactured crane system designed for heavy material handling operations. We provide high-efficiency, precision-engineered cranes made of premium quality materials.",
-    image: "/assets/eot-crane.webp",
+    image: "/assets/EOT-crane.webp",
     descImage1: "/assets/eot-wire-rope-hoist.webp",
     descImage2: "/assets/contact.webp",
     description: [

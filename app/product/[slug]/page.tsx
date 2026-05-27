@@ -44,6 +44,11 @@ export default async function ProductDetailPage({
       alt={product.title}
       className="max-w-full max-h-full object-contain"
     />
+    {/* <img
+  src={product.image}
+  alt={product.title}
+  className="w-full h-auto object-cover"
+/> */}
   </div>
 </div>
       </section>

@@ -175,14 +175,14 @@ return (
               href="/"
               className="flex items-center"
             >
-              <Image
-                src="/assets/logo.png"
-                alt="KBC Crane Logo"
-                width={140}
-                height={60}
-                priority
-                className="w-35 h-auto object-contain"
-              />
+<Image
+  src="/assets/logo.png"
+  alt="KBC Crane Logo"
+  width={160}
+  height={70}
+  priority
+  className="w-[120px] sm:w-[140px] md:w-[160px] h-auto object-contain"
+/>
             </Link>          
             {/* Desktop Menu */}
            <ul className="hidden lg:flex items-center gap-6 font-semibold text-[16px] ml-auto">

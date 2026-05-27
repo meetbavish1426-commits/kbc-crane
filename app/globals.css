@@ -150,3 +150,105 @@ body {
 .field::placeholder {
   color: #8f8f8f;
 }
+
+@keyframes crane-mobile-step {
+  0%, 16% {
+    transform: translateX(0);
+  }
+
+  22%, 38% {
+    transform: translateX(-290px);
+  }
+
+  44%, 60% {
+    transform: translateX(-580px);
+  }
+
+  66%, 82% {
+    transform: translateX(-870px);
+  }
+
+  88%, 100% {
+    transform: translateX(-870px);
+  }
+}
+
+@media (max-width: 640px) {
+  .animate-crane-scroll {
+    animation: crane-mobile-step 12s ease-in-out infinite;
+  }
+}
+
+
+/* @keyframes floatCard {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.mobile-float {
+  animation: floatCard 4s ease-in-out infinite;
+}
+
+.mobile-float:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.mobile-float:nth-child(3) {
+  animation-delay: 1s;
+}
+
+.mobile-float:nth-child(4) {
+  animation-delay: 1.5s;
+}
+
+.mobile-float:nth-child(5) {
+  animation-delay: 2s;
+}
+
+.mobile-float:nth-child(6) {
+  animation-delay: 2.5s;
+}
+@media (max-width: 640px) {
+  .mobile-float {
+    animation: floatCard 4s ease-in-out infinite;
+  }
+} */
+
+@keyframes scrollFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-card {
+  opacity: 0;
+  animation: scrollFadeUp linear forwards;
+  animation-timeline: view();
+  animation-range: entry 10% cover 35%;
+}
+
+.reveal-card {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.reveal-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
