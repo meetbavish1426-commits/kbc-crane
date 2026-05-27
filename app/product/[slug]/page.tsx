@@ -1,5 +1,6 @@
 import { products } from "@/data/products";
 import { notFound } from "next/navigation";
+import ProductImageMotion from "./ProductImageMotion";
 import {
   FaCog,
   FaMousePointer,
@@ -18,8 +19,11 @@ export default async function ProductDetailPage({
 
   if (!product) notFound();
 
+  
+
   return (
     <main className="bg-white text-[#111] overflow-hidden">
+      <ProductImageMotion />
       {/* HERO */}
 <section className="pt-16 sm:pt-20 pb-10 sm:pb-14 text-center"><div className="max-w-212.5 mx-auto px-4 sm:px-5">
   <div className="h-55 md:h-47.5 flex flex-col justify-center">
@@ -38,17 +42,12 @@ export default async function ProductDetailPage({
 </div>
  
 <div className="max-w-295 mx-auto px-4 sm:px-5">
-  <div className="w-full h-65 sm:h-105 md:h-130 lg:h-162.5 bg-white shadow-xl flex items-center justify-center overflow-hidden">
+  <div className="w-full h-[240px] sm:h-[420px] md:h-[520px] lg:h-[650px] bg-white shadow-xl flex items-center justify-center overflow-hidden">
     <img
       src={product.image}
       alt={product.title}
-      className="max-w-full max-h-full object-contain"
+      className="product-motion product-main-img w-full h-full object-contain p-3 sm:p-5"
     />
-    {/* <img
-  src={product.image}
-  alt={product.title}
-  className="w-full h-auto object-cover"
-/> */}
   </div>
 </div>
       </section>
@@ -109,19 +108,19 @@ export default async function ProductDetailPage({
             </div>
           </div>
 
-          <div className="relative lg:min-h-97.5 flex flex-col sm:block gap-4">
-            <img
-              src={product.descImage2}
-              alt={product.title}
-              className="relative lg:absolute lg:right-0 lg:top-0 w-full sm:w-[78%] lg:w-[78%] h-57.5 sm:h-80 lg:h-90 object-cover shadow-xl"
-            />
+<div className="relative flex flex-col gap-4 lg:min-h-[390px]">
+  <img
+    src={product.descImage2}
+    alt={product.title}
+    className="product-motion product-desc-img w-full h-[230px] sm:h-[320px] lg:absolute lg:right-0 lg:top-0 lg:w-[78%] lg:h-[360px] object-cover shadow-xl"
+  />
 
-            <img
-              src={product.descImage1}
-              alt={`${product.title} component`}
-              className="relative lg:absolute lg:left-0 lg:top-22.5 w-full sm:w-[62%] lg:w-[62%] h-52.5 sm:h-62.5 lg:h-65 object-cover bg-white shadow-[0_15px_40px_rgba(0,0,0,0.16)] p-2"
-            />
-          </div>
+  <img
+    src={product.descImage1}
+    alt={`${product.title} component`}
+    className="product-motion product-desc-img product-desc-img-delay w-full h-[210px] sm:h-[260px] lg:absolute lg:left-0 lg:top-[90px] lg:w-[62%] lg:h-[260px] object-cover bg-white shadow-[0_15px_40px_rgba(0,0,0,0.16)] p-2"
+  />
+</div>
         </div>
       </section>
 

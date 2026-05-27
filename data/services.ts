@@ -4,7 +4,7 @@ export const services = [
     title: "EOT Crane Annual Maintenance Contract",
     shortDesc:
       "Professional AMC service for EOT cranes with inspection, repair, maintenance and safety support.",
-    image: "/assets/service-amc.webp",
+    image: "/assets/about.jpg",
     descImage1: "/assets/eot-wire-rope-hoist.webp",
     descImage2: "/assets/contact.webp",
     description: [
@@ -18,7 +18,7 @@ export const services = [
     title: "Crane Modernization",
     shortDesc:
       "Upgrade your existing crane system with modern controls, safety features and improved performance.",
-    image: "/assets/crane-modernization.webp",
+    image: "/assets/about.jpg",
     descImage1: "/assets/eot-wire-rope-hoist.webp",
     descImage2: "/assets/contact.webp",
     description: [

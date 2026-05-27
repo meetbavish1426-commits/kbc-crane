@@ -175,14 +175,16 @@ return (
               href="/"
               className="flex items-center"
             >
-<Image
-  src="/assets/logo.png"
-  alt="KBC Crane Logo"
-  width={160}
-  height={70}
-  priority
-  className="w-[120px] sm:w-[140px] md:w-[160px] h-auto object-contain"
-/>
+  <span className="relative block w-[120px] sm:w-[140px] md:w-[160px] h-[52px] sm:h-[60px] md:h-[70px]">
+    <Image
+      src="/assets/logo.png"
+      alt="KBC Crane Logo"
+      fill
+      priority
+      sizes="(max-width: 640px) 120px, (max-width: 768px) 140px, 160px"
+      className="object-contain"
+    />
+  </span>
             </Link>          
             {/* Desktop Menu */}
            <ul className="hidden lg:flex items-center gap-6 font-semibold text-[16px] ml-auto">
@@ -426,7 +428,7 @@ ${menuOpen ? "translate-x-0" : "translate-x-full"}`}
       }
       className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold border-b"
     >
-      <span>Crane Components & Accessories</span>
+      <span>Crane Components</span>
       <FaChevronDown
         className={`text-xs transition-transform ${
           mobileSubDropdown === "components" ? "rotate-180" : ""        }`}

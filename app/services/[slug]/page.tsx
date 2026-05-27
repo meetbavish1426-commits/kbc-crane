@@ -1,5 +1,6 @@
 import { services } from "@/data/services";
 import { notFound } from "next/navigation";
+import ServiceMotion from "./ServiceMotion";
 import {
   FaCog,
   FaMousePointer,
@@ -19,6 +20,7 @@ export default async function ServiceDetailPage({
 
   return (
     <main className="bg-white text-[#111]">
+      <ServiceMotion />
       {/* HERO */}
       <section className="pt-20 pb-14 text-center">
         <div className="max-w-212.5 mx-auto px-5">
@@ -34,11 +36,11 @@ export default async function ServiceDetailPage({
         </div>
 
         <div className="max-w-295 mx-auto px-5 mt-12">
-          <img
-            src={service.image}
-            alt={service.title}
-            className="w-full h-80 sm:h-112.5 lg:h-180 object-cover shadow-[0_25px_60px_rgba(0,0,0,0.18)]"
-          />
+<img
+  src={service.image}
+  alt={service.title}
+  className="service-motion service-hero-img w-full h-80 sm:h-112.5 lg:h-180 object-cover shadow-[0_25px_60px_rgba(0,0,0,0.18)]"
+/>
         </div>
       </section>
 
@@ -52,7 +54,7 @@ export default async function ServiceDetailPage({
               { icon: <FaCheckCircle />, title: "HIGH QUALITY" },
               { icon: <FaChartLine />, title: "MARKET LEADING PRODUCT" },
             ].map((item) => (
-              <div key={item.title} className="group">
+             <div key={item.title} className="service-motion service-pop group">
                 <div className="w-15.5 h-15.5 mx-auto rounded-full border-[3px] border-black flex items-center justify-center text-[22px] group-hover:bg-[#e51b23] group-hover:text-white group-hover:border-[#e51b23] transition-all duration-300">
                   {item.icon}
                 </div>
@@ -79,7 +81,7 @@ export default async function ServiceDetailPage({
         <div className="max-w-295 mx-auto px-5 grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           <div>
             <h2 className="relative pl-5 text-[28px] font-bold mb-8 before:absolute before:left-0 before:top-1 before:w-1.5 before:h-8.75 before:bg-[#e51b23]">
-              Product Description
+              Our Services
             </h2>
 
             <div className="space-y-6">
@@ -95,17 +97,17 @@ export default async function ServiceDetailPage({
           </div>
 
           <div className="relative min-h-97.5">
-            <img
-              src={service.descImage2}
-              alt={service.title}
-              className="absolute right-0 top-0 w-[78%] h-90 object-cover shadow-xl"
-            />
+<img
+  src={service.descImage2}
+  alt={service.title}
+  className="service-motion service-slide-right absolute right-0 top-0 w-[78%] h-90 object-cover shadow-xl"
+/>
 
-            <img
-              src={service.descImage1}
-              alt={`${service.title} component`}
-              className="absolute left-0 top-22.5 w-[62%] h-65 object-cover bg-white shadow-[0_20px_50px_rgba(0,0,0,0.18)] p-2"
-            />
+<img
+  src={service.descImage1}
+  alt={`${service.title} component`}
+  className="service-motion service-slide-left absolute left-0 top-22.5 w-[62%] h-65 object-cover bg-white shadow-[0_20px_50px_rgba(0,0,0,0.18)] p-2"
+/>
           </div>
         </div>
       </section>

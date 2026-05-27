@@ -1,6 +1,71 @@
-import Link from "next/link";
+"use client";
 
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 export default function AboutUs() {
+const statsRef = useRef<HTMLDivElement | null>(null);
+const [startCount, setStartCount] = useState(false);
+const [years, setYears] = useState(0);
+const [projects, setProjects] = useState(0);
+
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        setStartCount(true);
+      }
+    },
+    { threshold: 0.3 }
+  );
+
+  if (statsRef.current) {
+    observer.observe(statsRef.current);
+  }
+
+  return () => observer.disconnect();
+}, []);
+
+useEffect(() => {
+  if (!startCount) return;
+
+  const duration = 2000;
+  let startTime: number;
+
+  const animate = (time: number) => {
+    if (!startTime) startTime = time;
+
+    const progress = Math.min((time - startTime) / duration, 1);
+
+    setYears(Math.floor(progress * 20));
+    setProjects(Math.floor(progress * 500));
+
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    }
+  };
+
+  requestAnimationFrame(animate);
+}, [startCount]);
+
+useEffect(() => {
+  const images = document.querySelectorAll(".company-image");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("company-show");
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  images.forEach((img) => observer.observe(img));
+
+  return () => observer.disconnect();
+}, []);
+
   return (
     <main className="bg-[#fff6f4] text-[#2b1f1f] font-sans overflow-hidden">
 <section className="relative min-h-[520px] sm:min-h-[620px] lg:min-h-[720px] overflow-hidden bg-black">
@@ -28,11 +93,11 @@ export default function AboutUs() {
         Every Lift.
       </h2>
 
-      <p className="text-white/90 text-[14px] sm:text-[16px] md:text-[18px] leading-[26px] sm:leading-[30px] max-w-[640px]">
-        KBC Sales & Service is a premier provider of heavy lifting
-        solutions, specializing in crane maintenance, parts supply,
-        and industrial equipment management.
-      </p>
+<p className="about-writing text-white/90 text-[14px] sm:text-[16px] md:text-[18px] leading-[26px] sm:leading-[30px] max-w-[640px]">
+  <span>KBC Sales & Service is a premier provider of heavy lifting</span>
+  <span>solutions, specializing in crane maintenance, parts supply,</span>
+  <span>and industrial equipment management.</span>
+</p>
 {/* 
       <button className="mt-8 bg-[#e51b23] text-white px-7 py-3 sm:px-8 sm:py-4 text-sm font-bold hover:bg-[#f28c00] transition duration-300">
         Explore More
@@ -68,10 +133,10 @@ export default function AboutUs() {
       </p>
 
       {/* STATS */}
-      <div className="flex flex-wrap gap-6">
+      <div ref={statsRef} className="flex flex-wrap gap-6">
         <div className="group w-[150px] h-[95px] border-2 border-[#c40018] bg-white flex flex-col justify-center px-6 transition-all duration-500 hover:bg-[#c40018] hover:-translate-y-2 hover:shadow-2xl">
           <strong className="text-[28px] leading-none text-[#c40018] font-extrabold group-hover:text-white transition">
-            20+
+            {years}+
           </strong>
 
           <span className="text-[10px] tracking-[0.18em] uppercase font-bold mt-3 text-[#241819] group-hover:text-white transition">
@@ -81,7 +146,7 @@ export default function AboutUs() {
 
         <div className="group w-[150px] h-[95px] border-2 border-[#c40018] bg-white flex flex-col justify-center px-6 transition-all duration-500 hover:bg-[#c40018] hover:-translate-y-2 hover:shadow-2xl">
           <strong className="text-[28px] leading-none text-[#c40018] font-extrabold group-hover:text-white transition">
-            500+
+            {projects}+
           </strong>
 
           <span className="text-[10px] tracking-[0.18em] uppercase font-bold mt-3 text-[#241819] group-hover:text-white transition">
@@ -107,14 +172,21 @@ export default function AboutUs() {
         <div className="absolute bottom-0 right-0 w-24 h-24 border-b-[6px] border-r-[6px] border-[#c40018] rounded-br-[24px] z-20"></div>
 
         {/* IMAGE */}
-        <img
-          src="/assets/company.webp"
-          alt="Company Profile"
-          className="w-full h-[420px] object-cover rounded-[18px]
-          transition-all duration-700
-          group-hover:scale-110
-          group-hover:rotate-[1deg]"
-        />
+<img
+  src="/assets/company.webp"
+  alt="Company Profile"
+  className="
+    company-image
+    w-full
+    h-[420px]
+    object-cover
+    rounded-[18px]
+    transition-all
+    duration-700
+    group-hover:scale-110
+    group-hover:rotate-[1deg]
+  "
+/>
 
         {/* DARK OVERLAY */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent opacity-0 group-hover:opacity-100 transition duration-700 rounded-[18px]"></div>

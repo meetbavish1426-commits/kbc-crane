@@ -14,7 +14,7 @@ import {
   FaBoxOpen,
   FaLightbulb,
 } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
  
 
 export default function Home() {
@@ -115,6 +115,55 @@ useEffect(() => {
 
   return () => observer.disconnect();
 }, []);
+
+const statsRef = useRef<HTMLDivElement | null>(null);
+const [startCount, setStartCount] = useState(false);
+
+const [years, setYears] = useState(0);
+const [projects, setProjects] = useState(0);
+const [customers, setCustomers] = useState(0);
+
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        setStartCount(true);
+      }
+    },
+    { threshold: 0.3 }
+  );
+
+  if (statsRef.current) {
+    observer.observe(statsRef.current);
+  }
+
+  return () => observer.disconnect();
+}, []);
+
+useEffect(() => {
+  if (!startCount) return;
+
+  const duration = 2000; // 2 seconds
+
+  let startTime: number;
+
+  const animate = (time: number) => {
+    if (!startTime) startTime = time;
+
+    const progress = Math.min((time - startTime) / duration, 1);
+
+    setYears(Math.floor(progress * 15));
+    setProjects(Math.floor(progress * 500));
+    setCustomers(Math.floor(progress * 13000));
+
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    }
+  };
+
+  requestAnimationFrame(animate);
+}, [startCount]);
+
 
   return (
 <main className="bg-white text-[#111]">
@@ -217,9 +266,9 @@ useEffect(() => {
       </Link>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-3 sm:gap-6 border-t border-white/20 mt-6 pt-6">
+      <div ref={statsRef} className="grid grid-cols-3 gap-3 sm:gap-6 border-t border-white/20 mt-6 pt-6">
         <div className="transition-transform duration-300 hover:scale-105">
-          <h3 className="text-2xl sm:text-3xl font-bold italic">15+</h3>
+          <h3 className="text-2xl sm:text-3xl font-bold italic">{years}+</h3>
 
           <p className="text-[9px] sm:text-[10px] uppercase tracking-wider mt-1 opacity-80">
             Years of Experience
@@ -227,7 +276,7 @@ useEffect(() => {
         </div>
 
         <div className="transition-transform duration-300 hover:scale-105">
-          <h3 className="text-2xl sm:text-3xl font-bold italic">500+</h3>
+          <h3 className="text-2xl sm:text-3xl font-bold italic">{projects}+</h3>
 
           <p className="text-[9px] sm:text-[10px] uppercase tracking-wider mt-1 opacity-80">
             Projects Completed
@@ -235,7 +284,7 @@ useEffect(() => {
         </div>
 
         <div className="transition-transform duration-300 hover:scale-105">
-          <h3 className="text-2xl sm:text-3xl font-bold italic">13k+</h3>
+          <h3 className="text-2xl sm:text-3xl font-bold italic">{(customers / 1000).toFixed(0)}k+</h3>
 
           <p className="text-[9px] sm:text-[10px] uppercase tracking-wider mt-1 opacity-80">
             Trusted Customers

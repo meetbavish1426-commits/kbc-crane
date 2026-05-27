@@ -13,21 +13,24 @@ export default function ContactPage() {
       >
         <div className="absolute inset-0 bg-black/70" />
 
-        <div className="relative z-10 max-w-295 mx-auto px-6 w-full">
-          <p className="text-[#c90016] uppercase tracking-[0.35em] text-[13px] font-bold mb-4">
-            Get In Touch
-          </p>
+<div className="relative z-10 max-w-[1180px] mx-auto px-6 w-full">
 
-          <h1 className="text-white text-[42px] md:text-[48px] font-extrabold uppercase leading-tight mb-5">
-            Technical Support & Sales
-          </h1>
+  <p className="contact-line text-[#c90016] uppercase tracking-[0.35em] text-[13px] font-bold mb-4">
+    Get In Touch
+  </p>
 
-          <p className="text-white/85 max-w-180 text-[17px] leading-8">
-            Expert assistance for your heavy lifting requirements. Reach out for
-            maintenance schedules, equipment inquiries, or fleet management
-            solutions.
-          </p>
-        </div>
+  <h1 className="contact-title text-white text-[42px] md:text-[48px] font-extrabold uppercase leading-tight mb-5">
+    <span>Technical Support</span>
+    <span>& Sales</span>
+  </h1>
+
+  <p className="contact-desc text-white/85 max-w-[720px] text-[17px] leading-8">
+    <span>Expert assistance for your heavy lifting requirements.</span>
+    <span>Reach out for maintenance schedules, equipment inquiries,</span>
+    <span>or fleet management solutions.</span>
+  </p>
+
+</div>
       </section>
 
       {/* CONTACT BODY */}
