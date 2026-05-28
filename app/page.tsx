@@ -15,6 +15,7 @@ import {
   FaLightbulb,
 } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
+
  
 
 export default function Home() {
@@ -61,21 +62,33 @@ const cranes = [
     { icon: <FaUtensils />, title: "Food & Beverage Industry", desc: "Hygienic and efficient material movement solutions." },
   ];
 
-  const images = [
-    "/assets/EOT-crane.webp",
-    "/assets/home02.webp",
-    "/assets/home03.webp",
-  ];
+const heroSlides = [
+  {
+    image: "/assets/EOT-crane.webp",
+     title: "Quality Creates Impact",
+   },
+  {
+    image: "/assets/home02.jpg",
+     title: "Advanced Crane Systems",
+   },
+  {
+    image: "/assets/home03.webp",
+     title: "Excellence In Material Handling",
+   },
+ 
+];
 
-  const [currentImage, setCurrentImage] = useState(0);
+const [currentImage, setCurrentImage] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % images.length);
-    }, 5000);
+useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentImage((prev) => (prev + 1) % heroSlides.length);
+  }, 5000);
 
-    return () => clearInterval(interval);
-  }, [images.length]);
+  return () => clearInterval(interval);
+}, []);
+
+const activeSlide = heroSlides[currentImage] ?? heroSlides[0];
 
 const sliderItems = [...cranes, cranes[0]];
 const [current, setCurrent] = useState(0);
@@ -152,7 +165,7 @@ useEffect(() => {
 
     const progress = Math.min((time - startTime) / duration, 1);
 
-    setYears(Math.floor(progress * 15));
+    setYears(Math.floor(progress * 10));
     setProjects(Math.floor(progress * 500));
     setCustomers(Math.floor(progress * 13000));
 
@@ -167,35 +180,37 @@ useEffect(() => {
 
   return (
 <main className="bg-white text-[#111]">
-  <section className="relative min-h-130 sm:min-h-150 md:min-h-170 lg:min-h-190 overflow-hidden flex items-center">
-    
-    {/* Background Images */}
-    {images.map((image, index) => (
-      <div
-        key={index}
-        className={`absolute inset-0 bg-cover bg-[center-center] sm:bg-center bg-no-repeat transition-opacity duration-2000 ${
-          currentImage === index ? "opacity-100" : "opacity-0"
-        }`}
-        style={{ backgroundImage: `url(${image})` }}
-      />
-    ))}
+<section className="relative h-[620px] sm:h-[700px] md:h-[760px] overflow-hidden flex items-center">
+  {heroSlides.map((slide, index) => (
+    <div
+      key={index}
+      className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-[1800ms] ease-in-out brightness-[0.92] contrast-[1.08] saturate-[1.05] ${
+        currentImage === index ? "opacity-100" : "opacity-0"
+      }`}
+      style={{
+        backgroundImage: `url(${slide.image})`,
+      }}
+    />
+  ))}
 
-    {/* Overlay */}
-    <div className="absolute inset-0 bg-black/55 sm:bg-black/50 md:bg-black/45"></div>
+  <div className="absolute inset-0 bg-[#0f172a]/20"></div>
+  <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-black/45 to-transparent"></div>
 
-    {/* Gradient */}
-    <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/50 to-black/10"></div>
+  <div className="relative z-10 max-w-[1450px] mx-auto w-full px-5 sm:px-8 md:px-12">
+    <div
+      key={currentImage}
+      className="max-w-[760px] animate-heroText"
+    >
+ 
 
-    {/* Content */}
-    <div className="relative z-10 w-full max-w-362.5 mx-auto px-5 sm:px-8 md:px-12 lg:px-16">
-      <div className="max-w-180 pt-16 sm:pt-20 md:pt-24">
-        <h1 className="hero-title text-white text-[38px] sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight">
-          Quality Creates <br className="hidden sm:block" />
-          Industrial Impact
-        </h1>
-      </div>
+      <h1 className="text-white text-[30px] sm:text-[20px] md:text-[68px] leading-tight font-bold">
+        {activeSlide.title}
+      </h1>
+
+ 
     </div>
-  </section>
+  </div>
+</section>
 
 
       {/* QUICK LINKS */}
