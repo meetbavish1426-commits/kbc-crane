@@ -9,22 +9,19 @@ export default function ContactPage() {
       {/* HERO */}
       <section
         className="relative h-125 flex items-center bg-cover bg-center"
-        style={{ backgroundImage: "url('/assets/contact.png')" }}
+        style={{ backgroundImage: "url('/assets/explosion-proof-wire-roap-hoist03.jpg')" }}
       >
-        <div className="absolute inset-0 bg-black/70" />
+        <div className="absolute inset-0 bg-black/50" />
 
-<div className="relative z-10 max-w-[1180px] mx-auto px-6 w-full">
+<div className="relative z-10 max-w-195 mx-auto px-6 w-full">
 
-  <p className="contact-line text-[#c90016] uppercase tracking-[0.35em] text-[13px] font-bold mb-4">
-    Get In Touch
-  </p>
 
-  <h1 className="contact-title text-white text-[42px] md:text-[48px] font-extrabold uppercase leading-tight mb-5">
+  <h1 className="contact-title text-white text-[34px] md:text-[48px] font-extrabold uppercase leading-tight mb-5">
     <span>Technical Support</span>
     <span>& Sales</span>
   </h1>
 
-  <p className="contact-desc text-white/85 max-w-[720px] text-[17px] leading-8">
+  <p className="contact-desc text-white/85 max-w-180 text-[18px] leading-8">
     <span>Expert assistance for your heavy lifting requirements.</span>
     <span>Reach out for maintenance schedules, equipment inquiries,</span>
     <span>or fleet management solutions.</span>

@@ -68,7 +68,7 @@ const heroSlides = [
      title: "Quality Creates Impact",
    },
   {
-    image: "/assets/home02.jpg",
+    image: "/assets/home02.webp",
      title: "Advanced Crane Systems",
    },
   {
@@ -180,11 +180,11 @@ useEffect(() => {
 
   return (
 <main className="bg-white text-[#111]">
-<section className="relative h-[620px] sm:h-[700px] md:h-[760px] overflow-hidden flex items-center">
+<section className="relative h-155 sm:h-175 md:h-190 overflow-hidden flex items-center">
   {heroSlides.map((slide, index) => (
     <div
       key={index}
-      className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-[1800ms] ease-in-out brightness-[0.92] contrast-[1.08] saturate-[1.05] ${
+      className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1800 ease-in-out brightness-[0.92] contrast-[1.08] saturate-[1.05] ${
         currentImage === index ? "opacity-100" : "opacity-0"
       }`}
       style={{
@@ -194,16 +194,16 @@ useEffect(() => {
   ))}
 
   <div className="absolute inset-0 bg-[#0f172a]/20"></div>
-  <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-black/45 to-transparent"></div>
+  <div className="absolute inset-x-0 bottom-0 h-56 bg-linear-to-t from-black/45 to-transparent"></div>
 
-  <div className="relative z-10 max-w-[1450px] mx-auto w-full px-5 sm:px-8 md:px-12">
+  <div className="relative z-10 max-w-362.5 mx-auto w-full px-5 sm:px-8 md:px-12">
     <div
       key={currentImage}
-      className="max-w-[760px] animate-heroText"
+      className="max-w-190 animate-heroText pt-24 md:pt-32 lg:pt-36"
     >
  
 
-      <h1 className="text-white text-[30px] sm:text-[20px] md:text-[68px] leading-tight font-bold">
+      <h1 className="text-white text-[38px] sm:text-[50px] md:text-[68px] leading-tight font-semibold">
         {activeSlide.title}
       </h1>
 
@@ -312,7 +312,7 @@ useEffect(() => {
 
 {/* CRANE RANGE */}
 <section className="pt-10 pb-8 md:pt-12 md:pb-10 bg-white overflow-hidden">
-  <div className="max-w-[1180px] mx-auto px-4 sm:px-6 overflow-hidden">
+  <div className="max-w-295 mx-auto px-4 sm:px-6 overflow-hidden">
     <h2 className="text-center text-2xl md:text-3xl font-bold mb-8 md:mb-10">
       Our Specialized Crane Range
     </h2>
@@ -328,11 +328,11 @@ useEffect(() => {
   >
     {sliderItems.map((crane, index) => (
       <div key={index} className="w-full shrink-0 px-1">
-        <div className="min-h-[446px] bg-white shadow-md border border-gray-100 text-center flex flex-col">
+        <div className="min-h-111.5 bg-white shadow-md border border-gray-100 text-center flex flex-col">
           <img
             src={crane.image}
             alt={crane.title}
-            className="w-full h-[190px] object-cover"
+            className="w-full h-47.5 object-cover"
           />
 
           <div className="p-5 flex flex-col flex-1">
@@ -363,12 +363,12 @@ useEffect(() => {
       {[...cranes, ...cranes].map((crane, index) => (
         <div
           key={`${crane.title}-${index}`}
-          className="w-[270px] sm:w-[300px] min-h-[446px] bg-white shadow-md border border-gray-100 text-center shrink-0 flex flex-col hover:shadow-xl transition duration-300"
+          className="w-67.5 sm:w-75 min-h-111.5 bg-white shadow-md border border-gray-100 text-center shrink-0 flex flex-col hover:shadow-xl transition duration-300"
         >
           <img
             src={crane.image}
             alt={crane.title}
-            className="w-full h-[170px] sm:h-[185px] object-cover"
+            className="w-full h-42.5 sm:h-46.25 object-cover"
           />
 
           <div className="p-5 sm:p-6 flex flex-col flex-1">
@@ -429,7 +429,7 @@ useEffect(() => {
  
 
 <section className="py-12 md:py-20 bg-white/95 overflow-hidden">
-  <div className="max-w-[1180px] mx-auto px-4 sm:px-6">
+  <div className="max-w-295 mx-auto px-4 sm:px-6">
     <h2 className="text-center text-[#e51b23] text-lg sm:text-xl font-bold mb-8 md:mb-12">
       Innovative Crane Solutions Across Industries
     </h2>
