@@ -169,20 +169,7 @@ export const products = [
       "These hoists are commonly used in manufacturing, construction, and other industries requiring precise lifting solutions.",
     ],
   },
-  {
-    slug: "mini-construction-lift",
-    title: "MINI CONSTRUCTION LIFT",
-    shortDesc:
-      "Mini construction lifts are compact and versatile lifting solutions designed for small-scale construction and maintenance tasks.",
-    image: "/assets/mini-construction-lift.webp",
-    descImage1: "/assets/mini-construction-lift02.webp",
-    descImage2: "/assets/mini-construction-lift03.webp",
-    description: [
-      "Mini construction lifts are designed for small-scale construction and maintenance tasks.",
-      "They offer flexibility, ease of operation, and are suitable for tight spaces.",
-      "These lifts are commonly used in residential and commercial construction projects.",
-    ],
-  },
+ 
   {
     slug: "hoist-for-goods-lift",
     title: "HOIST FOR GOODS LIFT",

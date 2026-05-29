@@ -35,7 +35,6 @@ const productMenu = [
       { name: "Heavy Duty Crab", slug: "heavy-duty-crab" },
       { name: "Explosion Proof Hoist", slug: "explosion-proof-hoist" },
       { name: "Curvature Type Hoist", slug: "curvature-type-hoist" },
-      { name: "Mini Construction Lift", slug: "mini-construction-lift" },
       { name: "Hoist For Goods Lift", slug: "hoist-for-goods-lift" },
     ],
   },
@@ -202,9 +201,13 @@ return (
   </li>
 
 <li className="relative group">
-  <button className="nav-link flex items-center gap-1">
-    Products <FaChevronDown className="text-[11px]" />
-  </button>
+  <Link
+    href="/product"
+    className="nav-link flex items-center gap-1"
+  >
+    Products
+    <FaChevronDown className="text-[11px]" />
+  </Link>
 
   {/* MAIN DROPDOWN */}
   <div className="absolute right-0 top-full invisible opacity-0 translate-y-3 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 bg-white shadow-2xl w-95 z-9999 max-h-[70vh] overflow-visible">
@@ -368,7 +371,6 @@ ${menuOpen ? "translate-x-0" : "translate-x-full"}`}
 { name: "Heavy Duty Crab", path: "/product/heavy-duty-crab" },
 { name: "Explosion Proof Hoist", path: "/product/explosion-proof-hoist" },
 { name: "Curvature Type Hoist", path: "/product/curvature-type-hoist" },
-{ name: "Mini Construction Lift", path: "/product/mini-construction-lift" },
 { name: "Hoist For Goods Lift", path: "/product/hoist-for-goods-lift" },
         ].map((item) => (
           <Link
