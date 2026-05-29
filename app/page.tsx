@@ -91,8 +91,12 @@ useEffect(() => {
 const activeSlide = heroSlides[currentImage] ?? heroSlides[0];
 
 const sliderItems = [...cranes, cranes[0]];
+
 const [current, setCurrent] = useState(0);
 const [transition, setTransition] = useState(true);
+
+const startX = useRef(0);
+const endX = useRef(0);
 
 useEffect(() => {
   const timer = setInterval(() => {
@@ -102,6 +106,30 @@ useEffect(() => {
 
   return () => clearInterval(timer);
 }, []);
+
+const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+  startX.current = e.touches[0].clientX;
+};
+
+const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+  endX.current = e.touches[0].clientX;
+};
+
+const handleTouchEnd = () => {
+  const diff = startX.current - endX.current;
+
+  if (diff > 50) {
+    setCurrent((prev) => prev + 1);
+    setTransition(true);
+  }
+
+  if (diff < -50) {
+    setCurrent((prev) =>
+      prev === 0 ? cranes.length - 1 : prev - 1
+    );
+    setTransition(true);
+  }
+};
 
 const handleTransitionEnd = () => {
   if (current === cranes.length) {
@@ -318,7 +346,12 @@ useEffect(() => {
     </h2>
 
 {/* MOBILE SLIDER */}
-<div className="sm:hidden overflow-hidden">
+<div
+  className="sm:hidden overflow-hidden"
+  onTouchStart={handleTouchStart}
+  onTouchMove={handleTouchMove}
+  onTouchEnd={handleTouchEnd}
+>
   <div
     onTransitionEnd={handleTransitionEnd}
     className={`flex ${
