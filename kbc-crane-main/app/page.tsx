@@ -219,11 +219,11 @@ useEffect(() => {
     <div
       key={index}
       className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-[1800ms] ease-in-out brightness-[0.88] contrast-[1.08] saturate-[1.05] ${
-        currentImage === index ? "opacity-100 scale-105" : "opacity-0 scale-100"
+        currentImage === index ? "opacity-100" : "opacity-0"
       }`}
       style={{
         backgroundImage: `url(${slide.image})`,
-        transition: "opacity 1.8s ease-in-out, transform 8s ease-out",
+        transition: "scale(1.05)",
       }}
     />
   ))}
@@ -625,28 +625,33 @@ useEffect(() => {
   <div className="max-w-300 mx-auto overflow-hidden px-6">
     
     {/* Scrolling Track */}
-    <div className="flex items-center gap-8 animate-crane-scroll hover:[animation-play-state:paused] w-max">
-      
-      {[...Array(2)].map((_, setIndex) => (
+ <div className="flex items-center gap-8 animate-crane-scroll hover:[animation-play-state:paused] w-max">
+  {[...Array(2)].map((_, setIndex) => (
+    <div
+      key={setIndex}
+      className="grid grid-cols-2 md:grid-cols-4 gap-6 min-w-[900px]"
+    >
+      {[
+        "/assets/1.jpeg",
+        "/assets/2.jpeg",
+        "/assets/3.jpeg",
+        "/assets/4.jpeg",
+      ].map((logo, i) => (
         <div
-          key={setIndex}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 min-w-225"
+          key={`${setIndex}-${i}`}
+          className="bg-white h-22 flex items-center justify-center rounded-xl shadow-sm border border-gray-100 px-4 card-hover"
         >
-          {["Power & Energy", "Steel Industries", "Railway Sector", "Construction Co."].map((name, i) => (
-            <div
-              key={`${setIndex}-${i}`}
-              className="bg-white h-22 flex items-center justify-center rounded-xl shadow-sm border border-gray-100 px-4 card-hover"
-            >
-              <div className="text-center">
-                <div className="text-[#c9121f] text-lg font-bold font-heading mb-0.5">{name.split(" ")[0]}</div>
-                <div className="text-[10px] text-gray-400 uppercase tracking-wider font-heading">{name.split(" ").slice(1).join(" ")}</div>
-              </div>
-            </div>
-          ))}
+          <img
+            src={logo}
+            alt={`Client ${i + 1}`}
+            className="max-h-12 w-auto object-contain"
+          />
         </div>
       ))}
     </div>
-  </div>
+  ))}
+</div>
+</div>
 </section>
     </main>
   );
