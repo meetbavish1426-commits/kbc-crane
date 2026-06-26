@@ -306,7 +306,7 @@ html {
   display: flex;
   gap: 24px;
   width: fit-content;
-  animation: marquee 50s linear infinite;
+  animation: marquee 40s linear infinite;
 }
 
 @keyframes marquee {

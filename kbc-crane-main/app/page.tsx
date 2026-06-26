@@ -209,6 +209,17 @@ useEffect(() => {
   requestAnimationFrame(animate);
 }, [startCount]);
 
+const logos = [
+  "/assets/1.jpeg",
+  "/assets/2.jpeg",
+  "/assets/3.jpeg",
+  "/assets/4.jpeg",
+  "/assets/5.jpeg",
+  "/assets/6.jpeg",
+  "/assets/7.jpeg",
+  "/assets/8.jpeg"
+];
+
 
   return (
 <main className="bg-white text-[#111]">
@@ -612,46 +623,49 @@ useEffect(() => {
       </section>
       
 {/* ═══════════ TRUSTED CLIENTS ═══════════ */}
-<section className="py-16 bg-[#fafafa] text-center pt-8 pb-16 md:pt-10 md:pb-20 overflow-hidden">
-  <div className="text-center mb-10">
-    <p className="text-[11px] uppercase tracking-[0.25em] text-[#c9121f] font-bold mb-3 font-heading">Trusted Partners</p>
-    <h2 className="text-xl font-extrabold font-heading">
+<section className="py-12 md:py-20 bg-[#fafafa] overflow-hidden">
+  <div className="text-center mb-8 md:mb-10">
+    <p className="text-[11px] uppercase tracking-[0.25em] text-[#c9121f] font-bold mb-3">
+      Trusted Partners
+    </p>
+
+    <h2 className="text-2xl md:text-4xl font-extrabold font-heading">
       Our Valuable Clients
     </h2>
+
     <div className="section-divider mt-4" />
   </div>
 
-  {/* Outer Container */}
-  <div className="max-w-300 mx-auto overflow-hidden px-6">
-    
-    {/* Scrolling Track */}
- <div className="flex items-center gap-8 animate-crane-scroll hover:[animation-play-state:paused] w-max">
-  {[...Array(2)].map((_, setIndex) => (
-    <div
-      key={setIndex}
-      className="grid grid-cols-2 md:grid-cols-4 gap-6 min-w-[900px]"
-    >
-      {[
-        "/assets/1.jpeg",
-        "/assets/2.jpeg",
-        "/assets/3.jpeg",
-        "/assets/4.jpeg",
-      ].map((logo, i) => (
-        <div
-          key={`${setIndex}-${i}`}
-          className="bg-white h-22 flex items-center justify-center rounded-xl shadow-sm border border-gray-100 px-4 card-hover"
-        >
-          <img
-            src={logo}
-            alt={`Client ${i + 1}`}
-            className="max-h-12 w-auto object-contain"
-          />
-        </div>
-      ))}
+  <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
+    <div className="overflow-hidden">
+
+      <div className="marquee-track">
+        {[...logos, ...logos, ...logos, ...logos].map((logo, i) => (
+          <div
+            key={i}
+            className="
+              flex-shrink-0
+              w-[130px] h-[75px]
+              md:w-[200px] md:h-[110px]
+              bg-white
+              rounded-xl
+              border border-gray-100
+              shadow-sm
+              flex items-center justify-center
+              px-4
+            "
+          >
+            <img
+              src={logo}
+              alt={`Client ${i}`}
+              className="max-h-[40px] md:max-h-[60px] w-auto object-contain"
+            />
+          </div>
+        ))}
+      </div>
+
     </div>
-  ))}
-</div>
-</div>
+  </div>
 </section>
     </main>
   );
