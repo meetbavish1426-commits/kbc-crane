@@ -58,7 +58,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${barlow.variable} ${inter.variable}`}>
+    // <html lang="en" className={`${barlow.variable} ${inter.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth">
       <body className="overflow-x-hidden font-body antialiased">
         <Navbar />
         <main>{children}</main>

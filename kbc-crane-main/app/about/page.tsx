@@ -36,7 +36,7 @@ useEffect(() => {
 
     const progress = Math.min((time - startTime) / duration, 1);
 
-    setYears(Math.floor(progress * 20));
+    setYears(Math.floor(progress * 10));
     setProjects(Math.floor(progress * 500));
 
     if (progress < 1) {

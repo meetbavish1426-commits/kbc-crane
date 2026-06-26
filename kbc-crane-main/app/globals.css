@@ -301,6 +301,23 @@ html {
   font-weight: 400;
 }
 
+/* client animations */
+.marquee-track {
+  display: flex;
+  gap: 24px;
+  width: fit-content;
+  animation: marquee 50s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-25%);
+  }
+}
+
 /* ─── ABOUT PAGE ANIMATIONS ─── */
 .about-writing span {
   display: block;

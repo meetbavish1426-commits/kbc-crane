@@ -146,18 +146,18 @@ return (
           <div className="flex items-center gap-4 sm:gap-6 font-medium tracking-wide">
             <a
               href="tel:+919712106675"
-              className="flex items-center gap-2 hover:text-[#e51b23] transition"
+              className="flex items-center gap-1 sm:gap-2 hover:text-[#e51b23] transition"
             >
               <FaPhoneAlt className="text-[#e51b23]" />
-              <span>+91 97121 06675</span>
+              <span className="hidden sm:inline">+91 97121 06675</span>
             </a>
 
             <a
               href="mailto:info@kbccrane.com"
-              className="hidden sm:flex items-center gap-2 hover:text-[#e51b23] transition"
+              className="flex items-center gap-1 sm:gap-2 hover:text-[#e51b23] transition"
             >
               <FaEnvelope className="text-[#e51b23]" />
-              info@kbccrane.com
+              <span className="hidden sm:inline">info@kbccrane.com</span>
             </a>
           </div>
         </div>
@@ -167,7 +167,7 @@ return (
       <nav
         className={`w-full transition-all duration-500 ${
           scrolled
-            ? "nav-glass shadow-2xl"
+            ? "bg-white shadow-2xl"
             : "bg-white shadow-md"
         }`}
       >
