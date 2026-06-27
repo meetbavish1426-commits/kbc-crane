@@ -94,9 +94,13 @@ useEffect(() => {
 
 const activeSlide = heroSlides[currentImage] ?? heroSlides[0];
 
-const sliderItems = [...cranes, cranes[0]];
+const sliderItems = [
+  cranes[cranes.length - 1], // first clone
+  ...cranes,
+  cranes[0], // last clone
+];
 
-const [current, setCurrent] = useState(0);
+const [current, setCurrent] = useState(1); // Start from the first actual crane (index 1)
 const [transition, setTransition] = useState(true);
 
 const startX = useRef(0);
@@ -104,7 +108,7 @@ const endX = useRef(0);
 
 useEffect(() => {
   const timer = setInterval(() => {
-    setCurrent((prev) => prev + 1);
+  setCurrent((prev) => prev + 1);
     setTransition(true);
   }, 4000);
 
@@ -118,27 +122,36 @@ const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
 const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
   endX.current = e.touches[0].clientX;
 };
-
+//swipe left
 const handleTouchEnd = () => {
   const diff = startX.current - endX.current;
 
   if (diff > 50) {
-    setCurrent((prev) => prev + 1);
-    setTransition(true);
+ setCurrent((prev) => prev + 1);
+     setTransition(true);
   }
-
-  if (diff < -50) {
-    setCurrent((prev) =>
-      prev === 0 ? cranes.length - 1 : prev - 1
-    );
-    setTransition(true);
-  }
+//swipe right
+if (diff < -50) {
+  setCurrent((prev) => prev - 1);
+  setTransition(true);
+}
 };
 
 const handleTransitionEnd = () => {
-  if (current === cranes.length) {
+  if (current === sliderItems.length - 1) {
     setTransition(false);
-    setCurrent(0);
+
+    setTimeout(() => {
+      setCurrent(1);
+    }, 0);
+  }
+
+  if (current === 0) {
+    setTransition(false);
+
+    setTimeout(() => {
+      setCurrent(cranes.length);
+    }, 0);
   }
 };
 
@@ -454,6 +467,15 @@ const logos = [
       </div>
     ))}
   </div>
+</div>
+<div className="relative w-32 mx-auto mt-5 h-1 bg-gray-200 rounded-full">
+  <div
+    className="absolute top-0 h-1 bg-[#c9121f] rounded-full transition-all duration-700"
+    style={{
+      width: `${100 / cranes.length}%`,
+      left: `${((current - 1) % cranes.length) * (100 / cranes.length)}%`,
+    }}
+  />
 </div>
     {/* DESKTOP / TABLET MARQUEE */}
     <div className="hidden sm:flex gap-5 sm:gap-6 animate-crane-scroll hover:[animation-play-state:paused]">
