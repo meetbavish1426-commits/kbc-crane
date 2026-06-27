@@ -17,7 +17,7 @@ import {
 } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-
+import { ChevronRight } from "lucide-react";
  
 
 export default function Home() {
@@ -84,6 +84,30 @@ const heroSlides = [
 ];
 
 const [currentImage, setCurrentImage] = useState(0);
+const autoSlideRef = useRef<NodeJS.Timeout | null>(null);
+const startAutoSlide = () => {
+  if (autoSlideRef.current) {
+    clearTimeout(autoSlideRef.current);
+  }
+
+  autoSlideRef.current = setTimeout(() => {
+    if (!isAnimating.current) {
+      isAnimating.current = true;
+      setCurrent((prev) => prev + 1);
+      setTransition(true);
+    }
+  }, 4000);
+};
+useEffect(() => {
+  startAutoSlide();
+
+  return () => {
+    if (autoSlideRef.current) {
+      clearTimeout(autoSlideRef.current);
+    }
+  };
+}, []);
+ 
 
 useEffect(() => {
   const interval = setInterval(() => {
@@ -101,21 +125,28 @@ const sliderItems = [
   cranes[0], // last clone
 ];
 
-const [current, setCurrent] = useState(1); // Start from the first actual crane (index 1)
+const [current, setCurrent] = useState(1);
+useEffect(() => {
+  startAutoSlide();
+}, [current]);                 // Start from the first actual crane (index 1)
 const [transition, setTransition] = useState(true);
 
 const startX = useRef(0);
 const endX = useRef(0);
 const isAnimating = useRef(false);
 
-useEffect(() => {
-  const timer = setInterval(() => {
-  setCurrent((prev) => prev + 1);
-    setTransition(true);
-  }, 4000);
+const nextSlide = () => {
+  if (isAnimating.current) return;
 
-  return () => clearInterval(timer);
-}, []);
+  isAnimating.current = true;
+
+  setCurrent((prev) => prev + 1);
+  setTransition(true);
+
+  startAutoSlide(); // reset timer
+};
+
+ 
 
 const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
   startX.current = e.touches[0].clientX;
@@ -136,15 +167,17 @@ const handleTouchEnd = () => {
 
   isAnimating.current = true;
 
-  if (diff > 0) {
-    // Swipe Left
+  if (diff > 50) {
     setCurrent((prev) => prev + 1);
-  } else {
-    // Swipe Right
+  }
+
+  if (diff < -50) {
     setCurrent((prev) => prev - 1);
   }
 
   setTransition(true);
+
+  startAutoSlide(); // reset timer
 };
 
 const handleTransitionEnd = () => {
@@ -172,7 +205,6 @@ useEffect(() => {
 const [emblaRef] = useEmblaCarousel({
   loop: true,
 });
-
 useEffect(() => {
   const cards = document.querySelectorAll(".reveal-card");
 
@@ -442,7 +474,7 @@ const logos = [
 
 {/* MOBILE SLIDER */}
 <div
-  className="sm:hidden overflow-hidden"
+  className="sm:hidden overflow-hidden relative"
   onTouchStart={handleTouchStart}
   onTouchMove={handleTouchMove}
   onTouchEnd={handleTouchEnd}
@@ -485,6 +517,12 @@ const logos = [
       </div>
     ))}
   </div>
+  <button
+  onClick={nextSlide}
+  className="absolute bottom-16 right-3 z-20 w-10 h-10 rounded-full bg-[#c9121f] text-white flex items-center justify-center shadow-lg"
+>
+  <ChevronRight size={20} />
+</button>
   <div className="relative w-32 mx-auto mt-5 h-1 bg-gray-200 rounded-full">
   <div
     className="absolute top-0 h-1 bg-[#c9121f] rounded-full transition-all duration-700"
