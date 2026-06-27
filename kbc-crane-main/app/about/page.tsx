@@ -215,12 +215,18 @@ useEffect(() => {
             </div>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-[345px_1fr] gap-6">
-            <div className="bg-[#ffd9d5] border border-[#c99b94] h-37.5 flex flex-col items-center justify-center text-center rounded-xl">
-              <div className="text-[#c9121f] text-[35px] leading-none mb-2">✿</div>
-              <p className="text-[8px] tracking-[0.18em] uppercase font-bold text-[#c9121f] font-heading">Safety Standard</p>
-              <h4 className="text-[#c9121f] text-[22px] font-extrabold leading-tight font-heading">ISO 9001:2015</h4>
-              <p className="text-[9px] tracking-[0.15em]">Certified Quality Management Systems</p>
-            </div>
+<div className="bg-[#ffd9d5] border border-[#c99b94] h-37.5 flex flex-col items-center justify-center text-center rounded-xl">
+  <div className="text-[#c9121f] text-[35px] leading-none mb-2">✓</div>
+  <p className="text-[8px] tracking-[0.18em] uppercase font-bold text-[#c9121f] font-heading">
+    GST Registered
+  </p>
+  <h4 className="text-[#c9121f] text-[22px] font-extrabold leading-tight font-heading">
+    GST Compliant
+  </h4>
+  <p className="text-[9px] tracking-[0.15em]">
+    Registered Business with Valid GST Number
+  </p>
+</div>
             <div className="bg-white border border-[#d6bab4] h-37.5 px-9 flex items-center justify-between gap-8 rounded-xl shadow-sm">
               <div>
                 <h3 className="text-[24px] font-extrabold mb-3 font-heading">Our Core Values</h3>

@@ -55,8 +55,8 @@ export default function ProductsPage() {
       <section className="pt-6 lg:pt-8">
         <div className="max-w-[1450px] mx-auto px-6 lg:px-10 xl:px-12 py-12">
           {/* HERO CARD */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 border border-[#cdb9b5] bg-white overflow-hidden min-h-[430px] shadow-sm rounded-2xl">
-            {/* LEFT CONTENT */}
+<div className="grid grid-cols-1 lg:grid-cols-2 border border-[#cdb9b5] bg-white overflow-hidden shadow-sm rounded-xl lg:rounded-2xl">
+              {/* LEFT CONTENT */}
  <div className="px-5 sm:px-8 lg:px-12 py-8 sm:py-10 lg:py-14 flex flex-col justify-center min-w-0">
   <p className="text-[8px] sm:text-[9px] tracking-[0.24em] sm:tracking-[0.32em] uppercase font-extrabold text-[#c9121f] mb-4 font-heading">
     Industrial Catalog 2024
@@ -90,15 +90,20 @@ export default function ProductsPage() {
     duration: 0.9,
     ease: "easeOut",
   }}
-  className="relative h-[260px] sm:h-[340px] lg:h-[430px] overflow-hidden bg-[#f8f8f8] rounded-r-2xl"
+className="relative h-[220px] xs:h-[260px] sm:h-[320px] md:h-[380px] lg:h-[430px] overflow-hidden bg-[#f8f8f8]"
 >
-  <motion.img
-    src="/assets/mainproduct.webp"
+  {/* <motion.img
+    src="/assets/c.png"
     alt="Heavy Lifting Solutions"
     className="w-full h-full object-contain lg:object-cover"
     whileHover={{ scale: 1.05 }}
     transition={{ duration: 0.5 }}
-  />
+  /> */}
+  <motion.img
+  src="/assets/mainproduct.webp"
+  alt="Heavy Lifting Solutions"
+  className="w-full h-full object-contain p-2 sm:p-4 lg:p-0 lg:object-cover"
+/>
 
   <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-transparent" />
 </motion.div>

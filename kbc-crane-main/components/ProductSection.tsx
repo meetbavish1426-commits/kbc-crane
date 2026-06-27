@@ -17,16 +17,16 @@ export default function ProductSection({
 }: ProductSectionProps) {
   return (
     <section className="mt-16">
-      <div className="flex items-center gap-6 mb-10">
-        <h2 className="text-[34px] font-extrabold uppercase font-heading shrink-0">
-          {title}
-        </h2>
+<div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-10">
+  <h2 className="text-[22px] sm:text-[28px] md:text-[34px] font-extrabold uppercase font-heading">
+    {title}
+  </h2>
 
-        <div className="flex-1 h-px bg-gradient-to-r from-[#d9b7b3] to-transparent" />
-      </div>
+  <div className="flex-1 h-px bg-gradient-to-r from-[#d9b7b3] to-transparent" />
+</div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-x-6 gap-y-8">
-        {products.map((item) => (
+<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 sm:gap-6">
+          {products.map((item) => (
           <Link
             key={item.slug}
             href={`/product/${item.slug}`}
@@ -49,9 +49,12 @@ export default function ProductSection({
               </div>
             </div>
 
-            <p className="mt-3 text-[10px] font-bold uppercase font-heading tracking-wide group-hover:text-[#c9121f] transition-colors duration-300">
+            {/* <p className="mt-3 text-[10px] font-bold uppercase font-heading tracking-wide group-hover:text-[#c9121f] transition-colors duration-300">
               {item.title}
-            </p>
+            </p> */}
+            <p className="mt-3 text-[9px] sm:text-[10px] font-bold uppercase font-heading tracking-wide group-hover:text-[#c9121f] transition-colors duration-300 leading-tight px-1 break-words">
+  {item.title}
+</p>
           </Link>
         ))}
       </div>
