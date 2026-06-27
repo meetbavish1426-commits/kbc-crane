@@ -77,7 +77,7 @@ useEffect(() => {
         />
 
         {/* Professional Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/30" />
+        <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/40 to-black/30" />
  
         {/* Content */}
         <div className="relative z-10 max-w-295 mx-auto px-5 sm:px-6 lg:px-8 min-h-130 sm:min-h-155 lg:min-h-180 flex items-center">
@@ -109,7 +109,7 @@ useEffect(() => {
         Company Profile
       </h2>
 
-      <div className="w-16 h-[3px] bg-[#c9121f] mb-7" />
+      <div className="w-16 h-0.75 bg-[#c9121f] mb-7" />
 
       <p className="text-[15px] leading-8 text-[#4e4141] mb-6 max-w-155">
         KBC Sales & Service has carved a niche in the heavy machinery
@@ -243,7 +243,7 @@ useEffect(() => {
     </div>
 
     <div className="relative max-w-225 mx-auto">
-      <div className="absolute left-5 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#c9121f] via-[#ffd7d2] to-[#c9121f] md:-translate-x-1/2" />
+      <div className="absolute left-5 md:left-1/2 top-0 bottom-0 w-0.5 bg-linear-to-b from-[#c9121f] via-[#ffd7d2] to-[#c9121f] md:-translate-x-1/2" />
 
       {[
         { year: "2016", title: "CRANE INDUSTRY EXPERIENCE", text: "Started working in the crane manufacturing line, gaining practical knowledge in crane systems, service, and industrial material handling.", side: "left" },

@@ -16,6 +16,7 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 
  
 
@@ -105,6 +106,7 @@ const [transition, setTransition] = useState(true);
 
 const startX = useRef(0);
 const endX = useRef(0);
+const isAnimating = useRef(false);
 
 useEffect(() => {
   const timer = setInterval(() => {
@@ -117,43 +119,59 @@ useEffect(() => {
 
 const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
   startX.current = e.touches[0].clientX;
+  endX.current = e.touches[0].clientX;
 };
 
 const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
   endX.current = e.touches[0].clientX;
 };
-//swipe left
+// const isAnimating = useRef(false);
+
 const handleTouchEnd = () => {
+  if (isAnimating.current) return;
+
   const diff = startX.current - endX.current;
 
-  if (diff > 50) {
- setCurrent((prev) => prev + 1);
-     setTransition(true);
+  if (Math.abs(diff) < 50) return;
+
+  isAnimating.current = true;
+
+  if (diff > 0) {
+    // Swipe Left
+    setCurrent((prev) => prev + 1);
+  } else {
+    // Swipe Right
+    setCurrent((prev) => prev - 1);
   }
-//swipe right
-if (diff < -50) {
-  setCurrent((prev) => prev - 1);
+
   setTransition(true);
-}
 };
 
 const handleTransitionEnd = () => {
+  isAnimating.current = false;
+
   if (current === sliderItems.length - 1) {
     setTransition(false);
-
-    setTimeout(() => {
-      setCurrent(1);
-    }, 0);
+    setCurrent(1);
   }
 
   if (current === 0) {
     setTransition(false);
-
-    setTimeout(() => {
-      setCurrent(cranes.length);
-    }, 0);
+    setCurrent(cranes.length);
   }
 };
+useEffect(() => {
+  if (!transition) {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setTransition(true);
+      });
+    });
+  }
+}, [transition]);
+const [emblaRef] = useEmblaCarousel({
+  loop: true,
+});
 
 useEffect(() => {
   const cards = document.querySelectorAll(".reveal-card");
@@ -242,7 +260,7 @@ const logos = [
   {heroSlides.map((slide, index) => (
     <div
       key={index}
-      className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-[1800ms] ease-in-out brightness-[0.88] contrast-[1.08] saturate-[1.05] ${
+      className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1800 ease-in-out brightness-[0.88] contrast-[1.08] saturate-[1.05] ${
         currentImage === index ? "opacity-100" : "opacity-0"
       }`}
       style={{
@@ -273,7 +291,7 @@ const logos = [
       </h1>
 
       {/* Description */}
-      <p className="text-white/75 text-[15px] sm:text-[17px] mt-4 max-w-[520px] leading-relaxed font-light">
+      <p className="text-white/75 text-[15px] sm:text-[17px] mt-4 max-w-130 leading-relaxed font-light">
         {activeSlide.subtitle}
       </p>
 
@@ -301,7 +319,7 @@ const logos = [
       <button
         key={i}
         onClick={() => setCurrentImage(i)}
-        className={`h-[3px] rounded-full transition-all duration-500 ${
+        className={`h-0.75 rounded-full transition-all duration-500 ${
           currentImage === i
             ? "w-8 bg-[#c9121f]"
             : "w-4 bg-white/40 hover:bg-white/60"
@@ -325,7 +343,7 @@ const logos = [
       <Link
         href={item.path}
         key={item.title}
-        className="group flex-1 flex flex-col items-center justify-center py-6 border-r border-gray-100 last:border-r-0 transition-all duration-400 hover:bg-gradient-to-b hover:from-red-50 hover:to-white"
+        className="group flex-1 flex flex-col items-center justify-center py-6 border-r border-gray-100 last:border-r-0 transition-all duration-400 hover:bg-linear-to-b hover:from-red-50 hover:to-white"
       >
         {/* ICON */}
         <div className="text-[28px] sm:text-[36px] text-[#c9121f] mb-2.5 transition-all duration-400 group-hover:rotate-6 group-hover:scale-115 group-hover:text-[#1a0a09]">
@@ -353,7 +371,7 @@ const logos = [
         alt="KBC Crane manufacturer"
         className="w-full h-80 sm:h-100 lg:h-120 object-cover transition-transform duration-700 ease-out group-hover:scale-110"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
     </div>
 
     {/* Content */}
@@ -378,7 +396,7 @@ const logos = [
       >
         Discover the power of reliability with KBC
         <FaArrowRight className="text-xs group-hover/link:translate-x-1 transition-transform" />
-        <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white transition-all duration-400 group-hover/link:w-full" />
+        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-400 group-hover/link:w-full" />
       </Link>
 
       {/* Stats */}
@@ -467,8 +485,7 @@ const logos = [
       </div>
     ))}
   </div>
-</div>
-<div className="relative w-32 mx-auto mt-5 h-1 bg-gray-200 rounded-full">
+  <div className="relative w-32 mx-auto mt-5 h-1 bg-gray-200 rounded-full">
   <div
     className="absolute top-0 h-1 bg-[#c9121f] rounded-full transition-all duration-700"
     style={{
@@ -477,6 +494,8 @@ const logos = [
     }}
   />
 </div>
+</div>
+ 
     {/* DESKTOP / TABLET MARQUEE */}
     <div className="hidden sm:flex gap-5 sm:gap-6 animate-crane-scroll hover:[animation-play-state:paused]">
       {[...cranes, ...cranes].map((crane, index) => (
@@ -591,13 +610,13 @@ const logos = [
               w-14 h-14
               shrink-0
               rounded-xl
-              bg-gradient-to-br from-red-50 to-red-100
+              bg-linear-to-br from-red-50 to-red-100
               text-[#c9121f]
               text-xl
               flex
               items-center
               justify-center
-              group-hover:bg-gradient-to-br group-hover:from-[#c9121f] group-hover:to-[#e51b23]
+              group-hover:bg-linear-to-br group-hover:from-[#c9121f] group-hover:to-[#e51b23]
               group-hover:text-white
               group-hover:rotate-6
               group-hover:scale-110
@@ -666,9 +685,9 @@ const logos = [
           <div
             key={i}
             className="
-              flex-shrink-0
-              w-[130px] h-[75px]
-              md:w-[200px] md:h-[110px]
+              shrink-0
+              w-32.5 h-18.75
+              md:w-50 md:h-27.5
               bg-white
               rounded-xl
               border border-gray-100
@@ -680,7 +699,7 @@ const logos = [
             <img
               src={logo}
               alt={`Client ${i}`}
-              className="max-h-[40px] md:max-h-[60px] w-auto object-contain"
+              className="max-h-10 md:max-h-15 w-auto object-contain"
             />
           </div>
         ))}
