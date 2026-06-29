@@ -16,19 +16,27 @@ export default function MoreServicesSlider({
 
   const items = services.filter((item) => item.slug !== currentSlug);
 
-  useEffect(() => {
-    const slider = sliderRef.current;
-    if (!slider) return;
+useEffect(() => {
+  const slider = sliderRef.current;
+  if (!slider) return;
 
-    let index = 0;
+  let index = 0;
 
-    const interval = setInterval(() => {
-      if (window.innerWidth >= 1024) return;
+  const interval = setInterval(() => {
+    if (window.innerWidth >= 1024) return;
 
-      const cards = slider.querySelectorAll(".mobile-service-card");
-      if (!cards.length) return;
+    const cards = slider.querySelectorAll(".mobile-service-card");
+    if (!cards.length) return;
 
-      index = index >= cards.length - 1 ? 0 : index + 1;
+    if (index >= cards.length - 1) {
+      index = 0;
+
+      slider.scrollTo({
+        left: 0,
+        behavior: "smooth",
+      });
+    } else {
+      index++;
 
       const card = cards[index] as HTMLElement;
 
@@ -36,14 +44,15 @@ export default function MoreServicesSlider({
         left: card.offsetLeft - 20,
         behavior: "smooth",
       });
-    }, 4500);
+    }
+  }, 4500);
 
-    return () => clearInterval(interval);
-  }, []);
+  return () => clearInterval(interval);
+}, []);
 
   return (
     <section className="bg-white text-black py-14 sm:py-16 md:py-24 overflow-hidden">
-      <div className="max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-10">
+      <div className="max-w-300 mx-auto px-5 sm:px-8 lg:px-10">
         <div className="mb-10">
           <p className="text-[10px] uppercase tracking-[0.25em] text-black/70 font-bold">
             More From KBC Crane
@@ -65,17 +74,17 @@ export default function MoreServicesSlider({
               key={`${item.slug}-${index}`}
               className="mobile-service-card group min-w-[85%] sm:min-w-[55%] md:min-w-[45%] snap-start bg-white border border-black/10 overflow-hidden shadow-sm hover:shadow-xl hover:border-[#e51b23] transition-all duration-500"
             >
-              <div className="relative h-[250px] sm:h-[280px] overflow-hidden bg-gray-200">
+              <div className="relative h-62.5 sm:h-70 overflow-hidden bg-gray-200">
                 <Image
                   src={item.descImage1}
                   alt={item.title}
                   fill
                   sizes="85vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="object-cover sm:transition-transform sm:duration-700 sm:group-hover:scale-110"
                 />
               </div>
 
-              <div className="p-5 sm:p-6 min-h-[210px]">
+              <div className="p-5 sm:p-6 min-h-52.5">
                 <h3 className="text-lg sm:text-xl font-black uppercase leading-tight group-hover:text-[#e51b23] transition-colors duration-300">
                   {item.title}
                 </h3>
@@ -100,19 +109,19 @@ export default function MoreServicesSlider({
               <Link
                 href={`/services/${item.slug}`}
                 key={`${item.slug}-${index}`}
-                className="group w-[420px] shrink-0 bg-white border border-black/10 overflow-hidden shadow-sm hover:shadow-xl hover:border-black transition-all duration-500"
+                className="group w-105 shrink-0 bg-white border border-black/10 overflow-hidden shadow-sm hover:shadow-xl hover:border-black transition-all duration-500"
               >
-                <div className="relative h-[280px] overflow-hidden bg-gray-200">
+                <div className="relative h-70 overflow-hidden bg-gray-200">
                   <Image
                     src={item.descImage1}
                     alt={item.title}
                     fill
                     sizes="420px"
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="object-cover sm:transition-transform sm:duration-700 sm:group-hover:scale-110"
                   />
                 </div>
 
-                <div className="p-7 min-h-[210px]">
+                <div className="p-7 min-h-52.5">
                   <h3 className="text-[24px] font-black uppercase leading-tight transition-colors duration-300">
                     {item.title}
                   </h3>

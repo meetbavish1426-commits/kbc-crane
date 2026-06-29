@@ -30,7 +30,7 @@ export default async function ServiceDetailPage({
     <main className="bg-[#f7f8fb] text-[#111] overflow-hidden">
       <ServiceMotion />;
       {/* HERO */}
-      <section className="relative min-h-[560px] sm:min-h-[620px] lg:min-h-[680px] flex items-center overflow-hidden">
+      <section className="relative min-h-140 sm:min-h-155 lg:min-h-170 flex items-center overflow-hidden">
         <Image
           src={service.image}
           alt={service.title}
@@ -41,18 +41,18 @@ export default async function ServiceDetailPage({
         />
 
         <div className="absolute inset-0 bg-black/20" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/20" />
+        <div className="absolute inset-0 bg-linear-to-r from-black/85 via-black/55 to-black/20" />
 
-        <div className="relative z-10 max-w-[1200px] mx-auto w-full px-5 sm:px-8 lg:px-10 pt-28 pb-16">
+        <div className="relative z-10 max-w-300 mx-auto w-full px-5 sm:px-8 lg:px-10 pt-28 pb-16">
           <p className="text-[#f4b41a] text-[11px] sm:text-sm uppercase tracking-[0.22em] sm:tracking-[0.25em] font-black mb-4">
             Understanding Your Needs
           </p>
 
-          <h1 className="text-white text-[36px] sm:text-[54px] lg:text-[72px] font-black leading-[1.05] max-w-[780px]">
+          <h1 className="text-white text-[36px] sm:text-[54px] lg:text-[72px] font-black leading-[1.05] max-w-195">
             {service.title}
           </h1>
 
-          <p className="mt-6 max-w-[620px] text-white/80 text-sm sm:text-base leading-7">
+          <p className="mt-6 max-w-155 text-white/80 text-sm sm:text-base leading-7">
             {service.shortDesc}
           </p>
 
@@ -78,8 +78,8 @@ export default async function ServiceDetailPage({
 
       {/* OVERVIEW */}
       <section className="py-14 sm:py-16 md:py-24">
-        <div className="max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-10 grid grid-cols-1 lg:grid-cols-2 gap-9 lg:gap-14 items-center">
-<div className="relative h-[280px] sm:h-[420px] lg:h-[500px] overflow-hidden bg-white shadow-xl kbc-product-img-reveal">
+        <div className="max-w-300 mx-auto px-5 sm:px-8 lg:px-10 grid grid-cols-1 lg:grid-cols-2 gap-9 lg:gap-14 items-center">
+<div className="relative h-70 sm:h-105 lg:h-125 overflow-hidden bg-white shadow-xl kbc-product-img-reveal">
   <Image
     src={service.descImage1}
     alt={service.title}
@@ -119,7 +119,7 @@ export default async function ServiceDetailPage({
 
       {/* KBC CRANE ADVANTAGE */}
       <section className="py-14 sm:py-16 md:py-24 bg-[#f7f8fb]">
-        <div className="max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-10">
+        <div className="max-w-300 mx-auto px-5 sm:px-8 lg:px-10">
           <div className="text-center mb-10 sm:mb-12">
             <p className="text-[#e51b23] uppercase tracking-[0.22em] sm:tracking-[0.25em] text-xs font-black mb-3">
               KBC Crane Advantage
@@ -129,7 +129,7 @@ export default async function ServiceDetailPage({
               What Sets Us Apart
             </h2>
 
-            <p className="mt-4 text-[#666] max-w-[650px] mx-auto text-sm sm:text-base leading-7">
+            <p className="mt-4 text-[#666] max-w-162.5 mx-auto text-sm sm:text-base leading-7">
               Delivering reliable, safe and efficient crane service solutions
               for industrial operations.
             </p>
@@ -164,10 +164,10 @@ export default async function ServiceDetailPage({
       </section>
 
       {/* EMERGENCY RECOVERY */}
-      <section className="bg-white py-14 sm:py-16 md:py-[95px]">
-        <div className="max-w-[1230px] mx-auto px-5 sm:px-8 lg:px-10">
-          <div className="relative overflow-hidden bg-[#3d1d18] min-h-[300px] md:min-h-[340px] px-7 sm:px-10 lg:px-[54px] py-12 sm:py-14 lg:py-[70px]">
-            <div className="absolute right-[-95px] sm:right-[-70px] bottom-[-120px] sm:bottom-[-105px] w-[280px] sm:w-[330px] h-[280px] sm:h-[330px] rotate-45 bg-white/10" />
+      <section className="bg-white py-14 sm:py-16 md:py-23.75">
+        <div className="max-w-307.5 mx-auto px-5 sm:px-8 lg:px-10">
+          <div className="relative overflow-hidden bg-[#3d1d18] min-h-75 md:min-h-85 px-7 sm:px-10 lg:px-13.5 py-12 sm:py-14 lg:py-17.5">
+            <div className="absolute -right-23.75 sm:-right-17.5 -bottom-30 sm:-bottom-26.25 w-70 sm:w-82.5 h-70 sm:h-82.5 rotate-45 bg-white/10" />
 
             <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-9 md:gap-10">
               <div>
@@ -177,7 +177,7 @@ export default async function ServiceDetailPage({
                   Recovery
                 </h2>
 
-                <p className="mt-6 sm:mt-7 max-w-[650px] text-white text-base sm:text-lg leading-8">
+                <p className="mt-6 sm:mt-7 max-w-162.5 text-white text-base sm:text-lg leading-8">
                   Have any questions or need immediate technical consultation
                   for your fleet?
                 </p>
@@ -185,7 +185,7 @@ export default async function ServiceDetailPage({
 
               <Link
                 href="/contact"
-                className="w-full sm:w-fit md:mr-[25px] inline-flex items-center justify-center bg-white text-[#e51b23] px-8 sm:px-[45px] py-4 sm:py-[18px] font-black uppercase tracking-[0.06em] text-sm hover:bg-[#e51b23] hover:text-white transition-all duration-300"
+                className="w-full sm:w-fit md:mr-6.25 inline-flex items-center justify-center bg-white text-[#e51b23] px-8 sm:px-11.25 py-4 sm:py-4.5 font-black uppercase tracking-[0.06em] text-sm hover:bg-[#e51b23] hover:text-white transition-all duration-300"
               >
                 Contact Now
               </Link>

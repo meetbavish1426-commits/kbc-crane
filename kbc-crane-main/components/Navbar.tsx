@@ -94,6 +94,17 @@ const services = [
  export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+  if (menuOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+
+  return () => {
+    document.body.style.overflow = "auto";
+  };
+}, [menuOpen]);
   const [mobileDropdown, setMobileDropdown] = useState<"products" | "services" | null>(null);
   const [mobileSubDropdown, setMobileSubDropdown] = useState<string | null>(null);
 
@@ -179,7 +190,7 @@ return (
               href="/"
               className="flex items-center"
             >
-  <span className="relative block w-[120px] sm:w-[140px] md:w-[160px] h-[52px] sm:h-[60px] md:h-[70px]">
+  <span className="relative block w-30 sm:w-35 md:w-40 h-13 sm:h-15 md:h-17.5">
     <Image
       src="/assets/logo.png"
       alt="KBC Crane Logo"
@@ -194,13 +205,13 @@ return (
            <ul className="hidden lg:flex items-center gap-1 font-heading font-semibold text-[15px] tracking-wide ml-auto">
             
   <li>
-    <Link href="/" className="relative px-4 py-3 text-[#1a0a09] hover:text-[#c9121f] transition duration-300 after:absolute after:left-4 after:bottom-1 after:w-0 after:h-[2px] after:bg-[#c9121f] hover:after:w-[calc(100%-32px)] after:transition-all after:duration-400 after:ease-out">
+    <Link href="/" className="relative px-4 py-3 text-[#1a0a09] hover:text-[#c9121f] transition duration-300 after:absolute after:left-4 after:right-4 after:bottom-1 after:h-0.5 after:bg-[#c9121f] after:transform after:scale-x-0 after:origin-left hover:after:scale-x-100 after:transition-all after:duration-400 after:ease-out">
       Home
     </Link>
   </li>
 
   <li>
-    <Link href="/about" className="relative px-4 py-3 text-[#1a0a09] hover:text-[#c9121f] transition duration-300 after:absolute after:left-4 after:bottom-1 after:w-0 after:h-[2px] after:bg-[#c9121f] hover:after:w-[calc(100%-32px)] after:transition-all after:duration-400 after:ease-out">
+    <Link href="/about" className="relative px-4 py-3 text-[#1a0a09] hover:text-[#c9121f] transition duration-300 after:absolute after:left-4 after:right-4 after:bottom-1 after:h-0.5 after:bg-[#c9121f] after:transform after:scale-x-0 after:origin-left hover:after:scale-x-100 after:transition-all after:duration-400 after:ease-out">
       About
     </Link>
   </li>
@@ -208,7 +219,7 @@ return (
 <li className="relative group">
   <Link
     href="/product"
-    className="relative px-4 py-3 text-[#1a0a09] hover:text-[#c9121f] transition duration-300 flex items-center gap-1.5 after:absolute after:left-4 after:bottom-1 after:w-0 after:h-[2px] after:bg-[#c9121f] hover:after:w-[calc(100%-32px)] after:transition-all after:duration-400 after:ease-out"
+    className="relative px-4 py-3 text-[#1a0a09] hover:text-[#c9121f] transition duration-300 flex items-center gap-1.5 after:absolute after:left-4 after:right-4 after:bottom-1 after:h-0.5 after:bg-[#c9121f] after:transform after:scale-x-0 after:origin-left hover:after:scale-x-100 after:transition-all after:duration-400 after:ease-out"
   >
     Products
     <FaChevronDown className="text-[10px] transition-transform duration-300 group-hover:rotate-180" />
@@ -242,7 +253,7 @@ return (
 </li>
 
         <li className="relative group">
-          <Link href="/services" className="relative px-4 py-3 text-[#1a0a09] hover:text-[#c9121f] transition duration-300 flex items-center gap-1.5 after:absolute after:left-4 after:bottom-1 after:w-0 after:h-[2px] after:bg-[#c9121f] hover:after:w-[calc(100%-32px)] after:transition-all after:duration-400 after:ease-out">
+          <Link href="/services" className="relative px-4 py-3 text-[#1a0a09] hover:text-[#c9121f] transition duration-300 flex items-center gap-1.5 after:absolute after:left-4 after:right-4 after:bottom-1 after:h-0.5 after:bg-[#c9121f] after:transform after:scale-x-0 after:origin-left hover:after:scale-x-100 after:transition-all after:duration-400 after:ease-out">
             Services <FaChevronDown className="text-[10px] transition-transform duration-300 group-hover:rotate-180" />
           </Link>
 
@@ -256,7 +267,7 @@ return (
               </li>
 
 <li>
-    <Link href="/brochure" className="relative px-4 py-3 text-[#1a0a09] hover:text-[#c9121f] transition duration-300 after:absolute after:left-4 after:bottom-1 after:w-0 after:h-[2px] after:bg-[#c9121f] hover:after:w-[calc(100%-32px)] after:transition-all after:duration-400 after:ease-out">
+    <Link href="/brochure" className="relative px-4 py-3 text-[#1a0a09] hover:text-[#c9121f] transition duration-300 after:absolute after:left-4 after:bottom-1 after:w-0 after:h-0.5 after:bg-[#c9121f] hover:after:w-[calc(100%-32px)] after:transition-all after:duration-400 after:ease-out">
       Brochure
     </Link>
   </li>
@@ -272,7 +283,7 @@ return (
 </ul>
               {/* Mobile Button */}
 <button
-  className="lg:hidden text-2xl text-[#c9121f] z-50"
+  className="lg:hidden text-2xl text-[#c9121f] z-[10000]"
   onClick={() => setMenuOpen(!menuOpen)}
   aria-label="Toggle Menu"
 >

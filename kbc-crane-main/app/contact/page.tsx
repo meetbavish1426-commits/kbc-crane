@@ -73,7 +73,7 @@ const handleSubmit = async (
         className="relative h-125 flex items-center bg-cover bg-center"
         style={{ backgroundImage: "url('/assets/explosion-proof-wire-rope-hoist03.webp')" }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/30" />
+        <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/40 to-black/30" />
 
 <div className="relative z-10 max-w-295 mx-auto px-6 w-full">
   <p className="text-[#c9121f] text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.3em] mb-4 font-heading">Contact Us</p>

@@ -545,7 +545,7 @@ const logos = [
             <img
               src={crane.image}
               alt={crane.title}
-              className="w-full h-42.5 sm:h-46.25 object-cover transition-transform duration-700 hover:scale-110"
+              className="w-full h-42.5 sm:h-46.25 object-cover sm:transition-transform duration-700 sm:hover:scale-110"
             />
           </div>
 

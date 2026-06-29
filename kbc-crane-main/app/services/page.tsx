@@ -66,7 +66,7 @@ const services = [
     title: "EOT Crane Operator Training",
     slug: "operator-training",
     desc: "Save over 50% compared to replacement. Our engineering team provides high-degree analytical upgrades for existing fleet capacity.",
-    img: "/assets/training-hero.webp",
+    img: "/assets/Training-hero.webp",
   },
   {
     title: "EOT Crane Rope Condition Monitoring",
@@ -98,19 +98,19 @@ export default function ServicesPage() {
           style={{ backgroundImage: "url('/assets/service-hero.webp')" }}
         />
 
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-black/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-r from-black/60 via-black/30 to-black/20" />
+        <div className="absolute inset-0 bg-linear-to-t from-[#111] via-black/20 to-transparent" />
 
-<div className="relative z-10 w-full max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-10 pb-12 md:pb-20 overflow-hidden">
+<div className="relative z-10 w-full max-w-300 mx-auto px-5 sm:px-8 lg:px-10 pb-12 md:pb-20 overflow-hidden">
   <p className="text-[11px] sm:text-xs tracking-[0.25em] text-[#c9121f] font-bold uppercase mb-4 font-heading">
     Understanding Your Needs
   </p>
 
-  <h1 className="text-[38px] min-[390px]:text-[44px] sm:text-[58px] md:text-[74px] lg:text-[86px] font-black leading-[0.95] uppercase tracking-[-1px] max-w-[320px] sm:max-w-[650px] lg:max-w-[760px] font-heading">
+  <h1 className="text-[38px] min-[390px]:text-[44px] sm:text-[58px] md:text-[74px] lg:text-[86px] font-black leading-[0.95] uppercase tracking-[-1px] max-w-[320px] sm:max-w-162.5 lg:max-w-190 font-heading">
     Crane <br /> Overhauling
   </h1>
 
-   <p className="mt-6 max-w-[560px] text-sm sm:text-base leading-7 text-white/75 overflow-hidden">
+   <p className="mt-6 max-w-140 text-sm sm:text-base leading-7 text-white/75 overflow-hidden">
   <span className="reveal-line block">
     Continually reintermediate integrated processes through technically
   </span>
@@ -137,7 +137,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CONTENT */}
-      <section className="max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-10 py-10 md:py-16">
+      <section className="max-w-300 mx-auto px-5 sm:px-8 lg:px-10 py-10 md:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-16 items-start">
           {/* LEFT */}
           <div>
@@ -146,7 +146,7 @@ export default function ServicesPage() {
                 Overhaul Dynamics
               </p>
 
-              <p className="text-[15px] md:text-lg leading-8 text-black max-w-[650px]">
+              <p className="text-[15px] md:text-lg leading-8 text-black max-w-162.5">
                 Crane tech specialists ensure accurate identification of the
                 measures to be taken to improve the service life of the
                 equipment. Crane overhauling involves complete refurbishment or
@@ -168,7 +168,7 @@ export default function ServicesPage() {
                   <img
                     src={img}
                     alt="Crane overhaul"
-                    className="h-[90px] sm:h-[140px] md:h-[170px] w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="h-22.5 sm:h-35 md:h-42.5 w-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                 </div>
               ))}
@@ -211,7 +211,7 @@ export default function ServicesPage() {
       </section>
 
       {/* MORE SERVICES */}
-      <section className="max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-10 pb-16 md:pb-24">
+      <section className="max-w-300 mx-auto px-5 sm:px-8 lg:px-10 pb-16 md:pb-24">
         <div className="mb-10">
           <p className="text-[10px] uppercase tracking-[0.25em] text-[#c9121f] font-bold font-heading">
             More From KBC Crane 
@@ -228,14 +228,14 @@ export default function ServicesPage() {
   key={index}
   className="group bg-white border border-black/10 rounded-xl overflow-hidden hover:border-[#c9121f]/20 transition-all duration-500 card-hover h-full flex flex-col"
 >
-              <div className="relative h-[230px] md:h-[260px] overflow-hidden">
+              <div className="relative h-57.5 md:h-65 overflow-hidden">
                 <img
                   src={item.img}
                   alt={item.title}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent" />
                 
                 {/* Red accent on hover */}
                 <div className="absolute bottom-0 left-0 w-0 h-1 bg-[#c9121f] group-hover:w-full transition-all duration-500" />
@@ -264,14 +264,14 @@ export default function ServicesPage() {
       </section>
 
       {/* EMERGENCY CTA */}
-      <section className="max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-10 pb-20">
+      <section className="max-w-300 mx-auto px-5 sm:px-8 lg:px-10 pb-20">
         <div className="relative overflow-hidden bg-[#1a0a09] px-7 py-10 md:px-12 md:py-14 lg:flex lg:items-center lg:justify-between rounded-2xl">
           <div>
             <h2 className="text-3xl md:text-5xl font-extrabold italic uppercase leading-tight font-heading">
               Emergency <br /> Recovery
             </h2>
 
-            <p className="mt-5 max-w-[480px] text-sm md:text-base text-white/80 leading-7">
+            <p className="mt-5 max-w-120 text-sm md:text-base text-white/80 leading-7">
               Have any questions or need immediate technical consultation for
               your fleet?
             </p>

@@ -37,7 +37,7 @@ export default function FeatureSection() {
       ref={sectionRef}
       className="bg-[#f5f6f8] py-12 sm:py-14 overflow-hidden"
     >
-      <div className="max-w-[1180px] mx-auto px-5">
+      <div className="max-w-295 mx-auto px-5">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {features.map((item, index) => (
             <div
@@ -52,7 +52,7 @@ export default function FeatureSection() {
               }
               hover:shadow-xl hover:-translate-y-2`}
             >
-              <div className="w-[58px] h-[58px] sm:w-[66px] sm:h-[66px] mx-auto rounded-full border-[3px] border-black flex items-center justify-center text-[20px] sm:text-[22px] group-hover:bg-[#e51b23] group-hover:text-white group-hover:border-[#e51b23] transition-all duration-300">
+              <div className="w-14.5 h-14.5 sm:w-16.5 sm:h-16.5 mx-auto rounded-full border-[3px] border-black flex items-center justify-center text-[20px] sm:text-[22px] group-hover:bg-[#e51b23] group-hover:text-white group-hover:border-[#e51b23] transition-all duration-300">
                 {item.icon}
               </div>
 
@@ -64,7 +64,7 @@ export default function FeatureSection() {
         </div>
 
         <div
-          className={`text-center mt-9 transition-all duration-700 ease-out delay-[700ms]
+          className={`text-center mt-9 transition-all duration-700 ease-out delay-700
           ${
             show
               ? "opacity-100 translate-y-0 scale-100"
@@ -73,7 +73,7 @@ export default function FeatureSection() {
         >
           <a
             href="/contact"
-            className="inline-flex items-center justify-center bg-[#e51b23] text-white text-[12px] font-bold px-10 py-4 min-w-[190px] hover:bg-black hover:-translate-y-1 transition-all duration-300"
+            className="inline-flex items-center justify-center bg-[#e51b23] text-white text-[12px] font-bold px-10 py-4 min-w-47.5 hover:bg-black hover:-translate-y-1 transition-all duration-300"
           >
             CONTACT US
           </a>

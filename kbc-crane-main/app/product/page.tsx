@@ -38,7 +38,7 @@ const components = [
   { title: "FESTOON SYSTEM", img: "/assets/festoon-system.webp", slug: "festoon-system" },
   { title: "WIRELESS RADIO REMOTE", img: "/assets/remote.webp", slug: "wireless-radio-remote" },
   { title: "CRANE LIMIT SWITCH", img: "/assets/crane-switch.webp", slug: "crane-limit-switch" },
-  { title: "BRAKER", img: "/assets/braker.webp", slug: "braker" },
+  { title: "BRAKERS", img: "/assets/braker.webp", slug: "brakers" },
   { title: "CABLE & CABLE TROLLY", img: "/assets/cable-trolley.webp", slug: "cable-trolley" },
   { title: "PENDANT STATION", img: "/assets/pendant-station.webp", slug: "pendant-station" },
   { title: "RUBBER & SPRING BUFFER", img: "/assets/rubber-spring.webp", slug: "rubber-spring" },
@@ -53,7 +53,7 @@ export default function ProductsPage() {
     <main className="min-h-screen bg-[#fdf5f3] text-[#160d0d]">
       {/* PAGE BODY */}
       <section className="pt-6 lg:pt-8">
-        <div className="max-w-[1450px] mx-auto px-6 lg:px-10 xl:px-12 py-12">
+        <div className="max-w-362.5 mx-auto px-6 lg:px-10 xl:px-12 py-12">
           {/* HERO CARD */}
 <div className="grid grid-cols-1 lg:grid-cols-2 border border-[#cdb9b5] bg-white overflow-hidden shadow-sm rounded-xl lg:rounded-2xl">
               {/* LEFT CONTENT */}
@@ -62,20 +62,20 @@ export default function ProductsPage() {
     Industrial Catalog 2024
   </p>
 
-  <h2 className="text-[34px] min-[390px]:text-[38px] sm:text-[46px] md:text-[54px] lg:text-[50px] xl:text-[58px] leading-[0.98] font-extrabold uppercase tracking-[-0.04em] mb-6 break-words font-heading">
+  <h2 className="text-[34px] min-[390px]:text-[38px] sm:text-[46px] md:text-[54px] lg:text-[50px] xl:text-[58px] leading-[0.98] font-extrabold uppercase tracking-[-0.04em] mb-6 wrap-break-word font-heading">
     Heavy Lifting
     <br />
     Solutions
   </h2>
 
-  <p className="text-[14px] sm:text-[15px] md:text-[16px] leading-[26px] sm:leading-[28px] text-[#625251] max-w-[520px] mb-8">
+  <p className="text-[14px] sm:text-[15px] md:text-[16px] leading-6.5 sm:leading-7 text-[#625251] max-w-130 mb-8">
     Precision-engineered crane components and lifting machinery designed for
     maximum durability and safety in the most demanding industrial environments.
   </p>
 
   <Link
     href="/contact"
-    className="w-full sm:w-[205px] h-[54px] sm:h-[57px] bg-[#1a0a09] text-white text-[12px] font-extrabold flex items-center justify-center rounded-lg hover:bg-[#c9121f] transition-all duration-300 font-heading tracking-wider"
+    className="w-full sm:w-51.25 h-13.5 sm:h-14.25 bg-[#1a0a09] text-white text-[12px] font-extrabold flex items-center justify-center rounded-lg hover:bg-[#c9121f] transition-all duration-300 font-heading tracking-wider"
   >
     REQUEST QUOTE
   </Link>
@@ -90,7 +90,7 @@ export default function ProductsPage() {
     duration: 0.9,
     ease: "easeOut",
   }}
-className="relative h-[220px] xs:h-[260px] sm:h-[320px] md:h-[380px] lg:h-[430px] overflow-hidden bg-[#f8f8f8]"
+className="relative h-55 xs:h-65 sm:h-80 md:h-95 lg:h-107.5 overflow-hidden bg-[#f8f8f8]"
 >
   {/* <motion.img
     src="/assets/c.png"
@@ -105,7 +105,7 @@ className="relative h-[220px] xs:h-[260px] sm:h-[320px] md:h-[380px] lg:h-[430px
   className="w-full h-full object-contain p-2 sm:p-4 lg:p-0 lg:object-cover"
 />
 
-  <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-transparent" />
+  <div className="absolute inset-0 bg-linear-to-r from-black/10 via-transparent to-transparent" />
 </motion.div>
 </div>
           {/* PRODUCT CATEGORIES */}

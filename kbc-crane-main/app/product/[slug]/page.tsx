@@ -38,7 +38,7 @@ export default async function ProductDetailPage({
 </div>
  
 <div className="max-w-295 mx-auto px-4 sm:px-5">
-  <div className="w-full h-[240px] sm:h-[420px] md:h-[520px] lg:h-[650px] bg-white shadow-xl flex items-center justify-center overflow-hidden">
+  <div className="w-full h-60 sm:h-105 md:h-130 lg:h-162.5 bg-white shadow-xl flex items-center justify-center overflow-hidden">
     <img
       src={product.image}
       alt={product.title}
@@ -71,17 +71,17 @@ export default async function ProductDetailPage({
             </div>
           </div>
 
-<div className="relative flex flex-col gap-4 lg:min-h-[390px]">
+<div className="relative flex flex-col gap-4 lg:min-h-97.5">
   <img
     src={product.descImage2}
     alt={product.title}
-    className="product-motion product-desc-img w-full h-[230px] sm:h-[320px] lg:absolute lg:right-0 lg:top-0 lg:w-[78%] lg:h-[360px] object-cover shadow-xl"
+    className="product-motion product-desc-img w-full h-57.5 sm:h-80 lg:absolute lg:right-0 lg:top-0 lg:w-[78%] lg:h-90 object-cover shadow-xl"
   />
 
   <img
     src={product.descImage1}
     alt={`${product.title} component`}
-    className="product-motion product-desc-img product-desc-img-delay w-full h-[210px] sm:h-[260px] lg:absolute lg:left-0 lg:top-[90px] lg:w-[62%] lg:h-[260px] object-cover bg-white shadow-[0_15px_40px_rgba(0,0,0,0.16)] p-2"
+    className="product-motion product-desc-img product-desc-img-delay w-full h-52.5 sm:h-65 lg:absolute lg:left-0 lg:top-22.5 lg:w-[62%] lg:h-65 object-cover bg-white shadow-[0_15px_40px_rgba(0,0,0,0.16)] p-2"
   />
 </div>
         </div>
