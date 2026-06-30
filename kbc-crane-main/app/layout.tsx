@@ -19,6 +19,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://kbccrane.com"),
+
   title: {
     default: "KBC Crane | Industrial Crane Rental Services",
     template: "%s | KBC Crane",
@@ -36,6 +38,15 @@ export const metadata: Metadata = {
     "KBC Crane",
   ],
 
+  icons: {
+    icon: "/favicon.ico",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+
   openGraph: {
     title: "KBC Crane",
     description:
@@ -44,11 +55,22 @@ export const metadata: Metadata = {
     siteName: "KBC Crane",
     locale: "en_IN",
     type: "website",
+    images: [
+      {
+        url: "/assets/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "KBC Crane",
+      },
+    ],
   },
 
-  robots: {
-    index: true,
-    follow: true,
+  twitter: {
+    card: "summary_large_image",
+    title: "KBC Crane",
+    description:
+      "Industrial Crane Rental & Heavy Lifting Solutions",
+    images: ["/assets/logo.png"],
   },
 };
 
@@ -57,11 +79,44 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "KBC Crane",
+    url: "https://kbccrane.com",
+    logo: "https://kbccrane.com/assets/logo.png",
+    description:
+      "Industrial crane rental, hydra crane, mobile crane and heavy lifting services.",
+    telephone: "+91XXXXXXXXXX",
+  };
+
   return (
-    // <html lang="en" className={`${barlow.variable} ${inter.variable}`}>
-    <html lang="en" data-scroll-behavior="smooth">
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${barlow.variable} ${inter.variable}`}
+    >
       <body className="overflow-x-hidden font-body antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schema),
+          }}
+        />
+
         <Navbar />
+        <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "KBC Crane",
+      url: "https://kbccrane.com",
+      logo: "https://kbccrane.com/assets/logo.png",
+    }),
+  }}
+/>
         <main>{children}</main>
         <Footer />
       </body>

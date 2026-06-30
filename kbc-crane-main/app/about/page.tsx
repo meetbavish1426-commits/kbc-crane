@@ -1,7 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+ 
+
 export default function AboutUs() {
 const statsRef = useRef<HTMLDivElement | null>(null);
 const [startCount, setStartCount] = useState(false);
@@ -70,9 +73,12 @@ useEffect(() => {
     <main className="bg-[#fff6f4] text-[#2b1f1f] overflow-hidden">
       <section className="relative min-h-130 sm:min-h-155 lg:min-h-180 overflow-hidden bg-black">
         {/* Background Image */}
-        <img
+        <Image
           src="/assets/about.webp"
           alt="KBC crane hero"
+          fill
+          priority
+          sizes="100vw"
           className="absolute inset-0 w-full h-full object-cover object-[60%_center] md:object-center"
         />
 
@@ -165,9 +171,11 @@ useEffect(() => {
         <div className="absolute bottom-0 right-0 w-24 h-24 border-b-[6px] border-r-[6px] border-[#c9121f] rounded-br-3xl z-20"></div>
 
         {/* IMAGE */}
-        <img
+        <Image
           src="/assets/company.webp"
           alt="Company Profile"
+          width={800}
+          height={1050}
           className="
             company-image
             w-full
@@ -206,7 +214,7 @@ useEffect(() => {
             <div className="bg-white border border-[#b9827c] min-h-57.5 p-9 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
               <div className="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center text-[#c9121f] text-[24px] mb-7">◎</div>
               <h3 className="text-[24px] font-extrabold mb-3 font-heading">Our Mission</h3>
-              <p className="text-[13px] leading-5.75 text-[#4d4141] max-w-205">To empower the construction and logistics industry with uncompromising lifting solutions through technical innovation, rapid-response maintenance, and a steadfast commitment to engineering precision. We strive to be the mechanical backbone of India's infrastructure development.</p>
+              <p className="text-[13px] leading-5.75 text-[#4d4141] max-w-205">To empower the construction and logistics industry with uncompromising lifting solutions through technical innovation, rapid-response maintenance, and a steadfast commitment to engineering precision. We strive to be the mechanical backbone of india&apos;s infrastructure development.</p>
             </div>
             <div className="bg-[#1a0a09] text-white min-h-57.5 p-9 border-l-[5px] border-[#c9121f] rounded-xl shadow-lg">
               <div className="text-[#c9121f] text-[27px] mb-8">◉</div>

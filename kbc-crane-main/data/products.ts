@@ -1,5 +1,3 @@
-import image from "next/image";
-
 export const products = [
   {
     slug: "eot-crane",

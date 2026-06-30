@@ -16,9 +16,8 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
-import useEmblaCarousel from "embla-carousel-react";
+import Image from "next/image";
 import { ChevronRight } from "lucide-react";
- 
 
 export default function Home() {
 const cranes = [
@@ -84,7 +83,13 @@ const heroSlides = [
 ];
 
 const [currentImage, setCurrentImage] = useState(0);
+const [current, setCurrent] = useState(1);
+const [transition, setTransition] = useState(true);
+const startX = useRef(0);
+const endX = useRef(0);
+const isAnimating = useRef(false);
 const autoSlideRef = useRef<NodeJS.Timeout | null>(null);
+
 const startAutoSlide = () => {
   if (autoSlideRef.current) {
     clearTimeout(autoSlideRef.current);
@@ -98,6 +103,7 @@ const startAutoSlide = () => {
     }
   }, 4000);
 };
+
 useEffect(() => {
   startAutoSlide();
 
@@ -107,7 +113,6 @@ useEffect(() => {
     }
   };
 }, []);
- 
 
 useEffect(() => {
   const interval = setInterval(() => {
@@ -115,7 +120,7 @@ useEffect(() => {
   }, 5000);
 
   return () => clearInterval(interval);
-}, []);
+}, [heroSlides.length]);
 
 const activeSlide = heroSlides[currentImage] ?? heroSlides[0];
 
@@ -125,15 +130,9 @@ const sliderItems = [
   cranes[0], // last clone
 ];
 
-const [current, setCurrent] = useState(1);
 useEffect(() => {
   startAutoSlide();
-}, [current]);                 // Start from the first actual crane (index 1)
-const [transition, setTransition] = useState(true);
-
-const startX = useRef(0);
-const endX = useRef(0);
-const isAnimating = useRef(false);
+}, [current]); // Start from the first actual crane (index 1)
 
 const nextSlide = () => {
   if (isAnimating.current) return;
@@ -202,9 +201,6 @@ useEffect(() => {
     });
   }
 }, [transition]);
-const [emblaRef] = useEmblaCarousel({
-  loop: true,
-});
 useEffect(() => {
   const cards = document.querySelectorAll(".reveal-card");
 
@@ -398,9 +394,11 @@ const logos = [
 
     {/* Image */}
     <div className="relative group overflow-hidden rounded-xl shadow-xl z-0">
-      <img
+      <Image
         src="/assets/loading.webp"
         alt="KBC Crane manufacturer"
+        width={1200}
+        height={800}
         className="w-full h-80 sm:h-100 lg:h-120 object-cover transition-transform duration-700 ease-out group-hover:scale-110"
       />
       <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -489,9 +487,11 @@ const logos = [
     {sliderItems.map((crane, index) => (
       <div key={index} className="w-full shrink-0 px-1">
         <div className="min-h-111.5 bg-white rounded-xl shadow-md border border-gray-100 text-center flex flex-col overflow-hidden card-hover">
-          <img
+          <Image
             src={crane.image}
             alt={crane.title}
+            width={600}
+            height={400}
             className="w-full h-47.5 object-cover"
           />
 
@@ -542,9 +542,11 @@ const logos = [
           className="w-67.5 sm:w-75 min-h-111.5 bg-white rounded-xl shadow-md border border-gray-100 text-center shrink-0 flex flex-col overflow-hidden card-hover"
         >
           <div className="overflow-hidden">
-            <img
+            <Image
               src={crane.image}
               alt={crane.title}
+              width={600}
+              height={430}
               className="w-full h-42.5 sm:h-46.25 object-cover sm:transition-transform duration-700 sm:hover:scale-110"
             />
           </div>
@@ -619,7 +621,7 @@ const logos = [
     </div>
 
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-      {industries.map((item, index) => (
+      {industries.map((item) => (
         <div
           key={item.title}
           className="
@@ -734,9 +736,11 @@ const logos = [
               px-4
             "
           >
-            <img
+            <Image
               src={logo}
               alt={`Client ${i}`}
+              width={200}
+              height={100}
               className="max-h-10 md:max-h-15 w-auto object-contain"
             />
           </div>

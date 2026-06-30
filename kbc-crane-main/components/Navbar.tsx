@@ -283,7 +283,7 @@ return (
 </ul>
               {/* Mobile Button */}
 <button
-  className="lg:hidden text-2xl text-[#c9121f] z-[10000]"
+  className="lg:hidden text-2xl text-[#c9121f] z-10000"
   onClick={() => setMenuOpen(!menuOpen)}
   aria-label="Toggle Menu"
 >

@@ -2,6 +2,49 @@ import { products } from "@/data/products";
 import { notFound } from "next/navigation";
 import ProductImageMotion from "./ProductImageMotion";
 import FeatureSection from "./FeatureSection";
+import Image from "next/image";
+import type { Metadata } from "next";
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+
+  const product = products.find((item) => item.slug === slug);
+
+  if (!product) {
+    return {
+      title: "Product Not Found",
+    };
+  }
+
+  return {
+    title: product.title,
+    description: product.shortDesc,
+    keywords: [
+      product.title,
+      "Industrial Crane",
+      "Crane Manufacturer",
+      "Material Handling Equipment",
+      "KBC Crane",
+    ],
+
+    openGraph: {
+      title: product.title,
+      description: product.shortDesc,
+      images: [
+        {
+          url: product.image,
+        },
+      ],
+    },
+
+    alternates: {
+      canonical: `https://kbccrane.com/product/${product.slug}`,
+    },
+  };
+}
 
 export default async function ProductDetailPage({
   params,
@@ -39,11 +82,14 @@ export default async function ProductDetailPage({
  
 <div className="max-w-295 mx-auto px-4 sm:px-5">
   <div className="w-full h-60 sm:h-105 md:h-130 lg:h-162.5 bg-white shadow-xl flex items-center justify-center overflow-hidden">
-    <img
-      src={product.image}
-      alt={product.title}
-      className="product-motion product-main-img w-full h-full object-contain p-3 sm:p-5"
-    />
+<Image
+  src={product.image}
+  alt={`${product.title} Crane`}
+  width={1200}
+  height={800}
+  priority
+  className="product-motion product-main-img w-full h-full object-contain p-3 sm:p-5"
+/>
   </div>
 </div>
       </section>
@@ -72,17 +118,25 @@ export default async function ProductDetailPage({
           </div>
 
 <div className="relative flex flex-col gap-4 lg:min-h-97.5">
-  <img
-    src={product.descImage2}
-    alt={product.title}
-    className="product-motion product-desc-img w-full h-57.5 sm:h-80 lg:absolute lg:right-0 lg:top-0 lg:w-[78%] lg:h-90 object-cover shadow-xl"
-  />
+  <div className="relative w-full h-57.5 sm:h-80 lg:absolute lg:right-0 lg:top-0 lg:w-[78%] lg:h-90">
+    <Image
+      src={product.descImage2}
+      alt={`${product.title} Crane`}
+      fill
+      sizes="(max-width: 1024px) 100vw, 50vw"
+      className="product-motion product-desc-img object-cover shadow-xl"
+    />
+  </div>
 
-  <img
-    src={product.descImage1}
-    alt={`${product.title} component`}
-    className="product-motion product-desc-img product-desc-img-delay w-full h-52.5 sm:h-65 lg:absolute lg:left-0 lg:top-22.5 lg:w-[62%] lg:h-65 object-cover bg-white shadow-[0_15px_40px_rgba(0,0,0,0.16)] p-2"
-  />
+  <div className="relative w-full h-52.5 sm:h-65 lg:absolute lg:left-0 lg:top-22.5 lg:w-[62%] lg:h-65">
+    <Image
+      src={product.descImage1}
+      alt={`${product.title} Component`}
+      fill
+      sizes="(max-width: 768px) 100vw, 50vw"
+      className="product-motion product-desc-img product-desc-img-delay object-cover bg-white shadow-[0_15px_40px_rgba(0,0,0,0.16)] p-2"
+    />
+  </div>
 </div>
         </div>
       </section>

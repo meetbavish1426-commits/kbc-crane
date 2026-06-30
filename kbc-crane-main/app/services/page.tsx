@@ -1,9 +1,15 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   FaDownload,
   FaArrowRight,
 } from "react-icons/fa";
 
+export const metadata = {
+  title: "Crane Services",
+  description:
+    "Professional crane maintenance, AMC, modernization, repair and commissioning services.",
+};
  
 
 const services = [
@@ -165,9 +171,11 @@ export default function ServicesPage() {
                   key={i}
                   className="group overflow-hidden rounded-lg border border-black/10 bg-[#1a1a1a]"
                 >
-                  <img
+                  <Image
                     src={img}
                     alt="Crane overhaul"
+                    width={800}
+                    height={600}
                     className="h-22.5 sm:h-35 md:h-42.5 w-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                 </div>
@@ -229,9 +237,11 @@ export default function ServicesPage() {
   className="group bg-white border border-black/10 rounded-xl overflow-hidden hover:border-[#c9121f]/20 transition-all duration-500 card-hover h-full flex flex-col"
 >
               <div className="relative h-57.5 md:h-65 overflow-hidden">
-                <img
+                <Image
                   src={item.img}
                   alt={item.title}
+                  width={800}
+                  height={600}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
 

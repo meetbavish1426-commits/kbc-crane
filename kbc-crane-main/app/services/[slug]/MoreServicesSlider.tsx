@@ -5,11 +5,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 
+interface ServiceItem {
+  slug: string;
+  descImage1: string;
+  title: string;
+  shortDesc: string;
+}
+
 export default function MoreServicesSlider({
   services,
   currentSlug,
 }: {
-  services: any[];
+  services: ServiceItem[];
   currentSlug: string;
 }) {
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -20,34 +27,84 @@ useEffect(() => {
   const slider = sliderRef.current;
   if (!slider) return;
 
-  let index = 0;
+  let interval: NodeJS.Timeout;
+  let scrollTimeout: NodeJS.Timeout;
+  let isAutoScrolling = false;
 
-  const interval = setInterval(() => {
-    if (window.innerWidth >= 1024) return;
+  const startAutoScroll = () => {
+    clearInterval(interval);
 
-    const cards = slider.querySelectorAll(".mobile-service-card");
-    if (!cards.length) return;
+    interval = setInterval(() => {
+      if (window.innerWidth >= 1024) return;
 
-    if (index >= cards.length - 1) {
-      index = 0;
+      const cards = Array.from(
+        slider.querySelectorAll(".mobile-service-card")
+      ) as HTMLElement[];
+
+      if (!cards.length) return;
+
+      // Current visible card find karo
+      let currentIndex = 0;
+      let closestDistance = Infinity;
+
+      cards.forEach((card, i) => {
+        const distance = Math.abs(
+          card.offsetLeft - slider.scrollLeft
+        );
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          currentIndex = i;
+        }
+      });
+
+      // Next card
+      const nextIndex =
+        currentIndex >= cards.length - 1
+          ? 0
+          : currentIndex + 1;
+
+      const nextCard = cards[nextIndex];
+
+      isAutoScrolling = true;
 
       slider.scrollTo({
-        left: 0,
+        left: nextIndex === 0 ? 0 : nextCard.offsetLeft - 20,
         behavior: "smooth",
       });
-    } else {
-      index++;
+    }, 4500);
+  };
 
-      const card = cards[index] as HTMLElement;
+  startAutoScroll();
 
-      slider.scrollTo({
-        left: card.offsetLeft - 20,
-        behavior: "smooth",
-      });
+  const handleScroll = () => {
+    // Auto scroll na scroll event ignore karo
+    if (isAutoScrolling) {
+      clearTimeout(scrollTimeout);
+
+      scrollTimeout = setTimeout(() => {
+        isAutoScrolling = false;
+      }, 700);
+
+      return;
     }
-  }, 4500);
 
-  return () => clearInterval(interval);
+    // User manually swipe kare
+    clearInterval(interval);
+    clearTimeout(scrollTimeout);
+
+    scrollTimeout = setTimeout(() => {
+      startAutoScroll();
+    }, 1000);
+  };
+
+  slider.addEventListener("scroll", handleScroll);
+
+  return () => {
+    clearInterval(interval);
+    clearTimeout(scrollTimeout);
+    slider.removeEventListener("scroll", handleScroll);
+  };
 }, []);
 
   return (

@@ -14,6 +14,49 @@ import {
   FaIndustry,
 } from "react-icons/fa";
 import ServiceMotion from "./ServiceMotion";
+import type { Metadata } from "next";
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+
+  const service = services.find((item) => item.slug === slug);
+
+  if (!service) {
+    return {
+      title: "Service Not Found",
+    };
+  }
+
+  return {
+    title: service.title,
+    description: service.shortDesc,
+    keywords: [
+      service.title,
+      "Crane Service",
+      "Crane Maintenance",
+      "Industrial Service",
+      "KBC Crane",
+    ],
+
+    openGraph: {
+      title: service.title,
+      description: service.shortDesc,
+      images: [
+        {
+          url: service.image,
+        },
+      ],
+      type: "website",
+    },
+
+    alternates: {
+      canonical: `https://kbccrane.com/services/${service.slug}`,
+    },
+  };
+}
  
 
 export default async function ServiceDetailPage({

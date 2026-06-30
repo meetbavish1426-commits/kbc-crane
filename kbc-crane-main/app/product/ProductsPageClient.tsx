@@ -1,15 +1,7 @@
-
-import Image from "next/image";
+"use client";
 import Link from "next/link";
-import type { Metadata } from "next";
 import ProductSection from "@/components/ProductSection";
- 
-export const metadata: Metadata = {
-  title: "Industrial Cranes & Hoists",
-  description:
-    "Explore EOT cranes, jib cranes, gantry cranes, hoists and industrial lifting equipment from KBC Crane.",
-}; 
-
+import { motion } from "framer-motion";
 
 const cranes = [
   { title: "SINGLE GIRDER EOT CRANE", img: "/assets/EOT-crane.webp", slug: "eot-crane" },
@@ -20,6 +12,7 @@ const cranes = [
   { title: "SEMI GANTRY CRANE", img: "/assets/semi-gantry-crane.webp", slug: "semi-gantry-crane" },
   { title: "UNDERSLUNG CRANE", img: "/assets/underslung-crane.webp", slug: "underslung-crane" },
 ];
+
 const hoists = [
   { title: "ELECTRIC CHAIN HOIST", img: "/assets/electric-chain-hoist02.webp", slug: "electric-chain-hoist" },
   { title: "ELECTRIC WIRE ROPE HOIST", img: "/assets/electric-wire-rope.webp", slug: "electric-wire-hoist" },
@@ -28,6 +21,7 @@ const hoists = [
   { title: "CURVATURE TYPE HOIST", img: "/assets/curvature-type-wire-rope-hoist02.webp", slug: "curvature-type-hoist" },
   { title: "HOIST FOR GOODS LIFT", img: "/assets/good-lift.webp", slug: "hoist-for-goods-lift" },
 ];
+
 const customize = [
   { title: "GRABBING CRANES", img: "/assets/grabbing-crane.webp", slug: "grabbing-cranes" },
   { title: "STEEL PLANT CRANE", img: "/assets/steel-crane.webp", slug: "steel-plant-crane" },
@@ -39,6 +33,7 @@ const customize = [
   { title: "CURVED CRANE", img: "/assets/curved-crane.webp", slug: "curved-crane" },
   { title: "FLAME PROOF CRANE", img: "/assets/flame-crane.webp", slug: "flame-proof-crane" },
 ];
+
 const components = [
   { title: "DSL SHROUDED BUSBAR", img: "/assets/busbar.webp", slug: "dsl-shrouded-busbar" },
   { title: "HEAVY DUTY BUSBAR", img: "/assets/heavy-duty-busbar.webp", slug: "heavy-duty-busbar" },
@@ -51,19 +46,15 @@ const components = [
   { title: "RUBBER & SPRING BUFFER", img: "/assets/rubber-spring.webp", slug: "rubber-spring" },
   { title: "ANTI COLLISION DRIVER", img: "/assets/anti-collision.webp", slug: "anti-collision-driver" },
   { title: "RAIL CLAMPS", img: "/assets/rail-clamp.webp", slug: "rail-clamps" },
-  { title: "WIRE ROPE", img: "/assets/wire-rope.webp", slug: "wire-rope" }
+  { title: "WIRE ROPE", img: "/assets/wire-rope.webp", slug: "wire-rope" },
 ];
 
-
-export default function ProductsPage() {
+export default function ProductsPageClient() {
   return (
     <main className="min-h-screen bg-[#fdf5f3] text-[#160d0d]">
-      {/* PAGE BODY */}
       <section className="pt-6 lg:pt-8">
         <div className="max-w-362.5 mx-auto px-6 lg:px-10 xl:px-12 py-12">
-          {/* HERO CARD */}
           <div className="grid grid-cols-1 lg:grid-cols-2 border border-[#cdb9b5] bg-white overflow-hidden shadow-sm rounded-xl lg:rounded-2xl">
-            {/* LEFT CONTENT */}
             <div className="px-5 sm:px-8 lg:px-12 py-8 sm:py-10 lg:py-14 flex flex-col justify-center min-w-0">
               <p className="text-[8px] sm:text-[9px] tracking-[0.24em] sm:tracking-[0.32em] uppercase font-extrabold text-[#c9121f] mb-4 font-heading">
                 Industrial Catalog 2024
@@ -76,8 +67,7 @@ export default function ProductsPage() {
               </h2>
 
               <p className="text-[14px] sm:text-[15px] md:text-[16px] leading-6.5 sm:leading-7 text-[#625251] max-w-130 mb-8">
-                Precision-engineered crane components and lifting machinery designed for
-                maximum durability and safety in the most demanding industrial environments.
+                Precision-engineered crane components and lifting machinery designed for maximum durability and safety in the most demanding industrial environments.
               </p>
 
               <Link
@@ -88,42 +78,29 @@ export default function ProductsPage() {
               </Link>
             </div>
 
-            {/* RIGHT IMAGE */}
-            <div className="relative h-55 xs:h-65 sm:h-80 md:h-95 lg:h-107.5 overflow-hidden bg-[#f8f8f8]">
-              <Image
+            <motion.div
+              initial={{ opacity: 0, y: 80, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.9, ease: "easeOut" }}
+              className="relative h-55 xs:h-65 sm:h-80 md:h-95 lg:h-107.5 overflow-hidden bg-[#f8f8f8]"
+            >
+              <motion.img
                 src="/assets/mainproduct.webp"
                 alt="Heavy Lifting Solutions"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-contain p-2 sm:p-4 lg:p-0 lg:object-cover"
-                priority
+                className="w-full h-full object-contain p-2 sm:p-4 lg:p-0 lg:object-cover"
               />
 
               <div className="absolute inset-0 bg-linear-to-r from-black/10 via-transparent to-transparent" />
-            </div>
+            </motion.div>
           </div>
 
-          {/* PRODUCT CATEGORIES */}
           <ProductSection title="Cranes" products={cranes} />
-
-          <ProductSection
-            title="Electric Hoists"
-            products={hoists}
-          />
-
-          <ProductSection
-            title="Customize Crane"
-            products={customize}
-          />
-
-          <ProductSection
-            title="Crane Components"
-            products={components}
-          />
+          <ProductSection title="Electric Hoists" products={hoists} />
+          <ProductSection title="Custom Solutions" products={customize} />
+          <ProductSection title="Core Components" products={components} />
         </div>
-        
       </section>
-    
     </main>
   );
 }

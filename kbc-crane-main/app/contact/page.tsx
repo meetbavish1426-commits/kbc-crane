@@ -1,8 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import { MapPin, Phone, Mail, Send, Loader2 } from "lucide-react";
 import type { ReactNode } from "react";
+  
 
 export default function ContactPage() {
 const [name, setName] = useState("");
